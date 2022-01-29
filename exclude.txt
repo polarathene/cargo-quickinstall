@@ -16,8 +16,11 @@ nitrocli
 pueue
 regress
 rerast
+rust-code-analysis
+semverver
 sgxs-tools
 spl-token-cli
 tauri-bundler
 tp-note
 tree-sitter
+watchexec
