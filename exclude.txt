@@ -1,11 +1,11 @@
 broot
-cargo-about
 cargo-bitbake
 cargo-bpf
 cargo-info
 cargo-instruments
 cargo-travis
 duct
+eltrafico
 help
 kmon
 leetcode-cli
@@ -14,6 +14,7 @@ my-iot
 navi
 nitrocli
 pueue
+racer
 regress
 rerast
 rust-code-analysis
