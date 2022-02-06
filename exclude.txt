@@ -1,5 +1,3 @@
-broot
-cargo-about
 cargo-all-features
 cargo-bitbake
 cargo-bpf
@@ -17,7 +15,6 @@ dutree
 exa
 feroxbuster
 fw
-gitui
 kmon
 kubie
 leetcode-cli
@@ -39,7 +36,6 @@ skim
 tab
 tauri-bundler
 tin-summer
-tp-note
 watchexec
 wrangler
 ytop
