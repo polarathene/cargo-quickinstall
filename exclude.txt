@@ -1,5 +1,4 @@
 broot
-cargo-about
 cargo-all-features
 cargo-bitbake
 cargo-bpf
@@ -14,5 +13,4 @@ rerast
 semverver
 sgxs-tools
 tauri-bundler
-tp-note
 watchexec
