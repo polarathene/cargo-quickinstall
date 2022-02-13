@@ -1,4 +1,3 @@
-broot
 cargo-all-features
 cargo-bitbake
 cargo-bpf
