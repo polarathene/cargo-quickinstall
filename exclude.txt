@@ -1,15 +1,12 @@
 cargo-all-features
-cargo-bitbake
 cargo-bpf
 cargo-travis
 duct
 my-iot
-navi
 nitrocli
 pueue
 regress
 rerast
 semverver
 sgxs-tools
-tauri-bundler
 watchexec
