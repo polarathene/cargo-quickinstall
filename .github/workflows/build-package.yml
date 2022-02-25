@@ -48,7 +48,7 @@ jobs:
           popd
 
           export TARGET_ARCH=x86_64-unknown-linux-gnu
-          export VERSION=0.10.12
+          export VERSION=0.13.0
 
           crate="${{steps.find_crate.outputs.crate_to_build}}"
           cargo-quickinstall/build-version.sh "$crate"
