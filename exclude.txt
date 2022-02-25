@@ -5,7 +5,6 @@ cargo-crev
 cargo-info
 cargo-instruments
 cargo-kcov
-cargo-pgx
 cargo-profiler
 cargo-travis
 cargo-update
@@ -18,10 +17,8 @@ gitui
 kmon
 kubie
 leetcode-cli
-miniserve
 my-iot
 natls
-navi
 nitrocli
 project_init
 pueue
@@ -37,4 +34,3 @@ tab
 tauri-bundler
 tin-summer
 watchexec
-wrangler
