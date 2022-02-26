@@ -48,7 +48,7 @@ jobs:
           popd
 
           export TARGET_ARCH=x86_64-pc-windows-msvc
-          export VERSION=0.5.1
+          export VERSION=0.8.0
 
           crate="${{steps.find_crate.outputs.crate_to_build}}"
           cargo-quickinstall/build-version.sh "$crate"
