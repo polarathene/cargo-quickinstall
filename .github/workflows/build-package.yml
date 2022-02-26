@@ -48,7 +48,7 @@ jobs:
           popd
 
           export TARGET_ARCH=aarch64-apple-darwin
-          export VERSION=0.33.3-dev
+          export VERSION=0.12.9
 
           crate="${{steps.find_crate.outputs.crate_to_build}}"
           cargo-quickinstall/build-version.sh "$crate"
