@@ -1,7 +1,7 @@
 name: Build for aarch64-apple-darwin
 
 # Triggered by push from cronjob.
-# aarch64-apple-darwin, main and macos-latest are replaced using sed.
+# cargo-audit, 0.16.0, aarch64-apple-darwin, actions and macos-latest are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -26,14 +26,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-          ref: main
+          ref: actions
           path: cargo-quickinstall
-
-      - name: find crate to build
-        id: find_crate
-        run: |
-          # This file contains the ::set-output entries that we need.
-          cat trigger/package-info.txt
 
       - name: build package
         env:
@@ -47,11 +41,11 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
+          export CRATE=cargo-audit
           export TARGET_ARCH=aarch64-apple-darwin
-          export VERSION=0.10.1
+          export VERSION=0.16.0
 
-          crate="${{steps.find_crate.outputs.crate_to_build}}"
-          cargo-quickinstall/build-version.sh "$crate"
+          cargo-quickinstall/build-version.sh "${CRATE}"
           ls $TEMPDIR
       # At this point, I don't think that you can really trust anything on the system anymore.
       # I'm not sure whether the js actions runtime is also affected by this.
@@ -80,14 +74,8 @@ jobs:
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: main
+          ref: actions
           path: cargo-quickinstall
-
-      - name: Rehydrate find_crate info
-        id: find_crate
-        run: |
-          # This script will do the `::set-output` dance for us
-          cat trigger/package-info.txt
 
       - name: Download binary artifact
         uses: actions/download-artifact@v2
@@ -100,7 +88,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: ${{github.workspace}}/built.d/${{steps.find_crate.outputs.crate_to_build}}-${{steps.find_crate.outputs.version_to_build}}-${{steps.find_crate.outputs.arch_to_build}}.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-audit-0.16.0-aarch64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -116,15 +104,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag ${{steps.find_crate.outputs.crate_to_build}}-${{steps.find_crate.outputs.version_to_build}}-${{steps.find_crate.outputs.arch_to_build}}
-            git push origin ${{steps.find_crate.outputs.crate_to_build}}-${{steps.find_crate.outputs.version_to_build}}-${{steps.find_crate.outputs.arch_to_build}}
+            git tag cargo-audit-0.16.0-aarch64-apple-darwin
+            git push origin cargo-audit-0.16.0-aarch64-apple-darwin
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{steps.find_crate.outputs.crate_to_build}}-${{steps.find_crate.outputs.version_to_build}}-${{steps.find_crate.outputs.arch_to_build}}
+          tag_name: cargo-audit-0.16.0-aarch64-apple-darwin
           files: |
-            ${{github.workspace}}/built.d/${{steps.find_crate.outputs.crate_to_build}}-${{steps.find_crate.outputs.version_to_build}}-${{steps.find_crate.outputs.arch_to_build}}.tar.gz
+            ${{github.workspace}}/built.d/cargo-audit-0.16.0-aarch64-apple-darwin.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
