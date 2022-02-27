@@ -1,14 +1,13 @@
 cargo-bpf
 eltrafico
 help
+joshuto
 kdash
 my-iot
-navi
 pueue
 racer
 regress
 rust-code-analysis
 semverver
 sgxs-tools
-tree-sitter
 watchexec
