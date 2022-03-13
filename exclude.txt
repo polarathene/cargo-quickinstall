@@ -1,15 +1,16 @@
 cargo-bitbake
+cargo-bpf
 cargo-graph
 cargo-info
 cargo-instruments
 cargo-travis
 duct
 eltrafico
-help
 joshuto
 kdash
 kmon
 leetcode-cli
+miniserve
 my-iot
 nitrocli
 racer
@@ -21,4 +22,5 @@ sgxs-tools
 spl-token-cli
 tauri-bundler
 tp-note
+uninstall
 watchexec
