@@ -1,3 +1,4 @@
+cargo-all-features
 cargo-bitbake
 cargo-bpf
 cargo-crev
@@ -7,7 +8,6 @@ cargo-kcov
 cargo-pgx
 cargo-profiler
 cargo-travis
-cargo-update
 cicada
 dutree
 exa
@@ -29,6 +29,7 @@ scryer-prolog
 semverver
 sgxs-tools
 skim
+starship
 tab
 tauri-bundler
 tin-summer
