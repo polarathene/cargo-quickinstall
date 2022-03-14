@@ -1,0 +1,118 @@
+name: Build for x86_64-unknown-linux-musl
+
+# Triggered by push from cronjob.
+# zellij, 0.26.0, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
+# Title of job in https://github.com/alsuren/cargo-quickinstall/actions
+# is set by the commit message, which is created by trigger-package-build.sh
+on:
+  push:
+    branches:
+      - trigger/x86_64-unknown-linux-musl
+
+jobs:
+  build-popular-package:
+    name: Build
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout trigger commit
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          path: trigger
+      - name: Checkout main repo
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          ref: main
+          path: cargo-quickinstall
+
+      - name: build package
+        env:
+          TEMPDIR: ${{github.workspace}}/built.d
+        run: |
+          set -euxo pipefail
+          # `tar` does not understand mixed forward and backslashes, but mkdir does.
+          # Try coercing it into a single style?
+          mkdir -p "$TEMPDIR"
+          pushd "$TEMPDIR"
+          TEMPDIR="$PWD"
+          popd
+
+          export CRATE=zellij
+          export TARGET_ARCH=x86_64-unknown-linux-musl
+          export VERSION=0.26.0
+
+          cargo-quickinstall/build-version.sh "${CRATE}"
+          ls $TEMPDIR
+      # At this point, I don't think that you can really trust anything on the system anymore.
+      # I'm not sure whether the js actions runtime is also affected by this.
+      # TODO: try breaking things so that uploads don't work.
+
+      - name: Create binary artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: built-ubuntu-20.04
+          path: ${{github.workspace}}/built.d
+          if-no-files-found: error
+
+
+  upload-popular-package:
+    name: Upload
+    needs: build-popular-package
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout trigger commit
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: true
+          path: trigger
+      - name: Checkout main repo
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          # TODO: maybe this should be main or configurable or something?
+          ref: main
+          path: cargo-quickinstall
+
+      - name: Download binary artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: built-ubuntu-20.04
+          # TODO: check that we it can't write anywhere other than built.d
+          path: ${{github.workspace}}/built.d
+
+      - name: Check if tarball exists
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: ${{github.workspace}}/built.d/zellij-0.26.0-x86_64-unknown-linux-musl.tar.gz
+
+      - name: Cancel if no tarball
+        if: steps.check_files.outputs.files_exists == 'false'
+        uses: andymckay/cancel-action@0.2
+
+      - name: Wait for cancellation signal if no tarball
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: |
+          sleep 1m
+          exit 1
+
+      - name: Tag release
+        run: |
+          (
+            cd trigger
+            git tag zellij-0.26.0-x86_64-unknown-linux-musl
+            git push origin zellij-0.26.0-x86_64-unknown-linux-musl
+          )
+
+      - name: Releasing assets
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: zellij-0.26.0-x86_64-unknown-linux-musl
+          files: |
+            ${{github.workspace}}/built.d/zellij-0.26.0-x86_64-unknown-linux-musl.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
