@@ -25,6 +25,7 @@ regress
 rerast
 rmesg
 rustscan
+schemafy
 scryer-prolog
 semverver
 sgxs-tools
@@ -33,5 +34,7 @@ starship
 tab
 tauri-bundler
 tin-summer
+wasm-pack
 watchexec
 wrangler
+zellij
