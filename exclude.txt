@@ -4,10 +4,14 @@ cargo-bpf
 cargo-travis
 diesel_cli
 duct
+my-iot
 navi
 nitrocli
+regress
 rerast
 semverver
+sgxs-tools
 sha3
 starship
 tauri-bundler
+watchexec
