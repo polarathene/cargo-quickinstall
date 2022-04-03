@@ -1,3 +1,4 @@
+bootloader
 cargo-bitbake
 cargo-bpf
 cargo-graph
@@ -7,17 +8,22 @@ cargo-travis
 czkawka_gui
 duct
 eltrafico
+fd
 helix
 joshuto
 kdash
 kmon
 leetcode-cli
 miniserve
+my-iot
 nitrocli
+paru
 racer
+regress
 rerast
 rust-code-analysis
 semverver
+sgxs-tools
 spl-token-cli
 tauri-bundler
 termscp
