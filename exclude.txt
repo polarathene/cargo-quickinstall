@@ -32,6 +32,7 @@ semverver
 sgxs-tools
 skim
 starship
+svlint
 tab
 tauri-bundler
 tin-summer
