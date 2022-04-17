@@ -1,7 +1,7 @@
 name: Build for x86_64-apple-darwin
 
 # Triggered by push from cronjob.
-# icx-proxy, 0.8.0, x86_64-apple-darwin, main and macos-latest are replaced using sed.
+# sqlx, 0.5.13, x86_64-apple-darwin, main and macos-latest are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -41,9 +41,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=icx-proxy
+          export CRATE=sqlx
           export TARGET_ARCH=x86_64-apple-darwin
-          export VERSION=0.8.0
+          export VERSION=0.5.13
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           ls $TEMPDIR
@@ -88,7 +88,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: ${{github.workspace}}/built.d/icx-proxy-0.8.0-x86_64-apple-darwin.tar.gz
+          files: ${{github.workspace}}/built.d/sqlx-0.5.13-x86_64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -104,15 +104,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag icx-proxy-0.8.0-x86_64-apple-darwin
-            git push origin icx-proxy-0.8.0-x86_64-apple-darwin
+            git tag sqlx-0.5.13-x86_64-apple-darwin
+            git push origin sqlx-0.5.13-x86_64-apple-darwin
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: icx-proxy-0.8.0-x86_64-apple-darwin
+          tag_name: sqlx-0.5.13-x86_64-apple-darwin
           files: |
-            ${{github.workspace}}/built.d/icx-proxy-0.8.0-x86_64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/sqlx-0.5.13-x86_64-apple-darwin.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
