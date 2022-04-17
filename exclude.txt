@@ -6,10 +6,12 @@ cargo-info
 cargo-instruments
 cargo-travis
 czkawka_gui
+delta
 duct
 eltrafico
 fd
 helix
+hunter
 joshuto
 kdash
 kmon
@@ -17,6 +19,7 @@ leetcode-cli
 miniserve
 my-iot
 nitrocli
+parcel
 paru
 racer
 regress
@@ -24,9 +27,11 @@ rerast
 rust-code-analysis
 semverver
 sgxs-tools
+songrec
 spl-token-cli
 tauri-bundler
 termscp
 tp-note
 uninstall
+wasmtime
 watchexec
