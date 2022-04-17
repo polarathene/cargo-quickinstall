@@ -40,6 +40,7 @@ fw
 git_lab_cli
 gitui
 intel-mkl-tool
+investments
 kmon
 leetcode-cli
 my-iot
@@ -50,6 +51,7 @@ project_init
 regress
 rerast
 rexcli
+rust-latest
 scryer-prolog
 semverver
 sgxs-tools
@@ -58,6 +60,8 @@ spotify-tui
 tab
 tauri-bundler
 tickrs
+tp-note
 tuftool
+watchexec
 webdriver-install
 wrangler
