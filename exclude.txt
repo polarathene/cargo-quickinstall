@@ -7,8 +7,10 @@ cargo-instruments
 cargo-travis
 czkawka_gui
 delta
+diesel-cli
+dive
 duct
-eltrafico
+dust
 fd
 helix
 hunter
@@ -21,11 +23,8 @@ my-iot
 nitrocli
 parcel
 paru
-racer
 regress
 rerast
-rust-code-analysis
-semverver
 sgxs-tools
 songrec
 spl-token-cli
@@ -33,5 +32,6 @@ tauri-bundler
 termscp
 tp-note
 uninstall
+valgrind
+wasm-bindgen
 wasmtime
-watchexec
