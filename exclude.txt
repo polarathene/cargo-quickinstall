@@ -1,11 +1,17 @@
 cargo-all-features
 cargo-bitbake
+cargo-bpf
 cargo-template
+cargo-travis
 diesel_cli
+duct
 dust
 my-iot
 navi
+nitrocli
 regress
+rerast
+semverver
 sgxs-tools
 sha3
 sqlx
