@@ -1,7 +1,6 @@
 bootloader
 cargo-bitbake
 cargo-bpf
-cargo-graph
 cargo-info
 cargo-instruments
 cargo-travis
@@ -15,7 +14,6 @@ fd
 great
 helix
 hunter
-joshuto
 kmon
 leetcode-cli
 miniserve
