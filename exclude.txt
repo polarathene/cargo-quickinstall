@@ -6,6 +6,7 @@ cargo-travis
 diesel_cli
 duct
 dust
+magic-wormhole
 my-iot
 navi
 nitrocli
