@@ -1,4 +1,3 @@
-bootloader
 cargo-bitbake
 cargo-bpf
 cargo-info
