@@ -12,6 +12,7 @@ navi
 nitrocli
 regress
 rerast
+sane-fmt
 semverver
 sgxs-tools
 sha3
