@@ -34,6 +34,7 @@ odbcsv
 project_init
 regress
 rerast
+sane-fmt
 scryer-prolog
 semverver
 sgxs-tools
