@@ -1,11 +1,13 @@
 cargo-all-features
 cargo-bitbake
 cargo-bpf
+cargo-guppy
 cargo-template
 cargo-travis
 diesel_cli
 duct
 dust
+gptman
 magic-wormhole
 my-iot
 navi
