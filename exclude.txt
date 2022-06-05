@@ -16,6 +16,7 @@ fd
 feroxbuster
 fw
 gitui
+gptman
 help
 kmon
 kubie
@@ -38,6 +39,7 @@ skim
 starship
 svlint
 tab
+tauri-bundler
 tin-summer
 wasm-bindgen
 wasm-pack
