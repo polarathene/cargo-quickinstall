@@ -1,9 +1,9 @@
-cargo-all-features
 cargo-bitbake
 cargo-bpf
 cargo-crev
 cargo-instruments
 cargo-kcov
+cargo-pgx
 cargo-profiler
 cargo-spellcheck
 cargo-travis
@@ -35,6 +35,7 @@ scryer-prolog
 semverver
 sgxs-tools
 skim
+starship
 svlint
 tab
 tauri
@@ -43,4 +44,5 @@ tin-summer
 wasm-bindgen
 wasm-pack
 watchexec
+wrangler
 zellij
