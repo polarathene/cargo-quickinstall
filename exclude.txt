@@ -22,5 +22,6 @@ sgxs-tools
 sha3
 sqlx
 tauri-bundler
+vector
 warp-packer
 watchexec
