@@ -5,7 +5,6 @@ cargo-instruments
 cargo-kcov
 cargo-pgx
 cargo-profiler
-cargo-spellcheck
 cargo-travis
 cicada
 dua-cli
@@ -30,7 +29,6 @@ rerast
 rmesg
 rustscan
 sane-fmt
-schemafy
 scryer-prolog
 semverver
 sgxs-tools
@@ -42,7 +40,5 @@ tauri
 tauri-bundler
 tin-summer
 wasm-bindgen
-wasm-pack
 watchexec
 wrangler
-zellij
