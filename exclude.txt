@@ -1,11 +1,11 @@
 bootloader
 cargo-bitbake
+cargo-bpf
 cargo-hf2
 cargo-instruments
 cargo-travis
 chef
 cranelift
-czkawka_gui
 delta
 diesel-cli
 dive
@@ -16,7 +16,6 @@ generate
 gptman
 great
 heim
-helix
 hunter
 jless
 kmon
@@ -45,7 +44,6 @@ sqlx
 szyszka
 tauri-bundler
 tectonic
-termscp
 tldr
 tp-note
 valgrind
