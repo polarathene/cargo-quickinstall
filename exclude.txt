@@ -1,4 +1,6 @@
 bootloader
+build
+c2rust
 cargo-bitbake
 cargo-bpf
 cargo-hf2
@@ -11,7 +13,6 @@ diesel-cli
 dive
 duct
 dust
-fd
 generate
 gptman
 great
@@ -22,20 +23,16 @@ kmon
 leetcode-cli
 list
 mold
-my-iot
 ncspot
 nitrocli
 parcel
-paru
 racer
-regress
 rerast
 ripgrep_all
 rustc_codegen_cranelift
 rustdesk
 sane-fmt
 semverver
-sgxs-tools
 silicon
 slap
 songrec
