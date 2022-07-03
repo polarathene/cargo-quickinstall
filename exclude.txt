@@ -38,6 +38,5 @@ scryer-prolog
 semverver
 sgxs-tools
 tab
-tauri-bundler
 tickrs
 watchexec
