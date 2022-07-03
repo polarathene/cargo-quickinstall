@@ -20,18 +20,14 @@ kmon
 kubie
 leetcode-cli
 mdcat
-my-iot
 natls
 nitrocli
 project_init
-regress
 rerast
-rmesg
 rustscan
 sane-fmt
 scryer-prolog
 semverver
-sgxs-tools
 skim
 starship
 svlint
@@ -39,6 +35,5 @@ tab
 tauri
 tauri-bundler
 tin-summer
-wasm-bindgen
-watchexec
 wrangler
+zellij
