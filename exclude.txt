@@ -1,3 +1,4 @@
+broot
 cargo-audit
 cargo-bitbake
 cargo-bom
@@ -38,5 +39,6 @@ scryer-prolog
 semverver
 sgxs-tools
 tab
+tauri-bundler
 tickrs
 watchexec
