@@ -1,3 +1,4 @@
+broot
 cargo-bitbake
 cargo-bpf
 cargo-guppy
@@ -8,13 +9,17 @@ duct
 dust
 gptman
 magic-wormhole
+my-iot
 nitrocli
+regress
 rerast
 rip
 rustpython
 sane-fmt
 semverver
+sgxs-tools
 sqlx
 tauri-bundler
 vector
 warp-packer
+watchexec
