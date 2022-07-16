@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-gnu
 
 # Triggered by push from cronjob.
-# ferium, 4.1.5, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
+# flutter_rust_bridge, 1.38.0, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -41,9 +41,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=ferium
+          export CRATE=flutter_rust_bridge
           export TARGET_ARCH=x86_64-unknown-linux-gnu
-          export VERSION=4.1.5
+          export VERSION=1.38.0
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           ls $TEMPDIR
@@ -89,7 +89,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: ${{github.workspace}}/built.d/ferium-4.1.5-x86_64-unknown-linux-gnu.tar.gz
+          files: ${{github.workspace}}/built.d/flutter_rust_bridge-1.38.0-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -105,15 +105,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag ferium-4.1.5-x86_64-unknown-linux-gnu
-            git push origin ferium-4.1.5-x86_64-unknown-linux-gnu
+            git tag flutter_rust_bridge-1.38.0-x86_64-unknown-linux-gnu
+            git push origin flutter_rust_bridge-1.38.0-x86_64-unknown-linux-gnu
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ferium-4.1.5-x86_64-unknown-linux-gnu
+          tag_name: flutter_rust_bridge-1.38.0-x86_64-unknown-linux-gnu
           files: |
-            ${{github.workspace}}/built.d/ferium-4.1.5-x86_64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/flutter_rust_bridge-1.38.0-x86_64-unknown-linux-gnu.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
