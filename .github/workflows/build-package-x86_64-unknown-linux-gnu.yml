@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-gnu
 
 # Triggered by push from cronjob.
-# html_parser, 0.6.3, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
+# naga-cli, 0.9.0, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -41,9 +41,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=html_parser
+          export CRATE=naga-cli
           export TARGET_ARCH=x86_64-unknown-linux-gnu
-          export VERSION=0.6.3
+          export VERSION=0.9.0
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           ls $TEMPDIR
@@ -89,7 +89,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: ${{github.workspace}}/built.d/html_parser-0.6.3-x86_64-unknown-linux-gnu.tar.gz
+          files: ${{github.workspace}}/built.d/naga-cli-0.9.0-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -105,15 +105,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag html_parser-0.6.3-x86_64-unknown-linux-gnu
-            git push origin html_parser-0.6.3-x86_64-unknown-linux-gnu
+            git tag naga-cli-0.9.0-x86_64-unknown-linux-gnu
+            git push origin naga-cli-0.9.0-x86_64-unknown-linux-gnu
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: html_parser-0.6.3-x86_64-unknown-linux-gnu
+          tag_name: naga-cli-0.9.0-x86_64-unknown-linux-gnu
           files: |
-            ${{github.workspace}}/built.d/html_parser-0.6.3-x86_64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/naga-cli-0.9.0-x86_64-unknown-linux-gnu.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
