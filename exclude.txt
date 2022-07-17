@@ -19,7 +19,6 @@ help
 kmon
 kubie
 leetcode-cli
-mdcat
 my-iot
 natls
 nitrocli
