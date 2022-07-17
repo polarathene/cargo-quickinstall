@@ -7,6 +7,7 @@ cargo-travis
 cloudflare-ddns-update
 duct
 dust
+frawk
 gptman
 magic-wormhole
 my-iot
