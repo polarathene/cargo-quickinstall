@@ -1,7 +1,7 @@
 name: Build for x86_64-apple-darwin
 
 # Triggered by push from cronjob.
-# rand, 0.8.5, x86_64-apple-darwin, main and macos-latest are replaced using sed.
+# run_script, 0.9.0, x86_64-apple-darwin, main and macos-latest are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -41,9 +41,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=rand
+          export CRATE=run_script
           export TARGET_ARCH=x86_64-apple-darwin
-          export VERSION=0.8.5
+          export VERSION=0.9.0
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           ls $TEMPDIR
@@ -89,7 +89,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: ${{github.workspace}}/built.d/rand-0.8.5-x86_64-apple-darwin.tar.gz
+          files: ${{github.workspace}}/built.d/run_script-0.9.0-x86_64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -105,15 +105,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag rand-0.8.5-x86_64-apple-darwin
-            git push origin rand-0.8.5-x86_64-apple-darwin
+            git tag run_script-0.9.0-x86_64-apple-darwin
+            git push origin run_script-0.9.0-x86_64-apple-darwin
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: rand-0.8.5-x86_64-apple-darwin
+          tag_name: run_script-0.9.0-x86_64-apple-darwin
           files: |
-            ${{github.workspace}}/built.d/rand-0.8.5-x86_64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/run_script-0.9.0-x86_64-apple-darwin.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
