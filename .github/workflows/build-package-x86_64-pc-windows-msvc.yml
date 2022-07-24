@@ -1,7 +1,7 @@
 name: Build for x86_64-pc-windows-msvc
 
 # Triggered by push from cronjob.
-# cargo-binstall, 0.11.1, x86_64-pc-windows-msvc, actions and windows-latest are replaced using sed.
+# cargo-binstall, 0.11.1, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -13,7 +13,6 @@ jobs:
   build-popular-package:
     name: Build
     runs-on: windows-latest
-    permissions: {}
     defaults:
       run:
         shell: bash
@@ -27,7 +26,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: build package
@@ -76,7 +75,7 @@ jobs:
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: Download binary artifact
