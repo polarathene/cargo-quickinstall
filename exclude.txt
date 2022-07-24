@@ -9,6 +9,7 @@ duct
 dust
 frawk
 gptman
+helix-term
 magic-wormhole
 my-iot
 nitrocli
