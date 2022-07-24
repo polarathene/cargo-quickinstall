@@ -32,6 +32,7 @@ cargo-travis
 cargo-udeps
 cargo-unleash
 cargo-update
+cargo-updater
 cargo-vendor
 cargo-web
 cargo-whatfeatures
