@@ -38,6 +38,7 @@ sane-fmt
 scryer-prolog
 semverver
 sgxs-tools
+sheldon
 tab
 tauri-bundler
 tickrs
