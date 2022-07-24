@@ -9,8 +9,10 @@ cargo-snippet
 cargo-travis
 chef
 cranelift
+delta
 diesel-cli
 dive
+download
 duct
 dust
 espflash
@@ -21,11 +23,13 @@ generate
 gptman
 great
 heim
+helix
 html_parser
 jless
 kmon
 leetcode-cli
 list
+ls
 mold
 my-iot
 ncspot
@@ -38,6 +42,7 @@ rerast
 rip
 ripgrep_all
 rq
+rust-analyzer
 rustc_codegen_cranelift
 rustdesk
 rusty-krab-manager
