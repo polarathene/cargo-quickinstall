@@ -38,6 +38,7 @@ cargo-web
 cargo-whatfeatures
 diesel_cli
 emplace
+fd
 ferium
 feroxbuster
 ffsend
@@ -54,6 +55,7 @@ mdbook-linkcheck
 monolith
 neowatch
 nu
+rip
 rq
 rust-analyzer
 rusty-krab-manager
