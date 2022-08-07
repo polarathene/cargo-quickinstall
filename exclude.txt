@@ -1,3 +1,4 @@
+      6 +::set-output name=crate_to_build::probe-rs ::set-output name=version_to_build::0.13.0
 bootloader
 build
 c2rust
@@ -10,18 +11,14 @@ cargo-travis
 chef
 cranelift
 delta
-diesel-cli
-dive
 download
 duct
-dust
 espflash
 fd
 ferium
 flutter_rust_bridge
 generate
 gptman
-great
 heim
 helix
 html_parser
@@ -32,9 +29,9 @@ list
 ls
 mold
 my-iot
-ncspot
 neowatch
 nitrocli
+probe-rs-cli
 qsv
 racer
 regress
@@ -48,20 +45,9 @@ rustdesk
 rusty-krab-manager
 rustygit
 sane-fmt
-semverver
 sgxs-tools
-silicon
-slap
 spl-token-cli
-sqlx
 szyszka
 tauri-bundler
-tectonic
-tldr
 tp-note
 update
-valgrind
-wasm-bindgen
-watch
-watchexec
-xplr
