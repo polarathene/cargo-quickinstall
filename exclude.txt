@@ -22,6 +22,7 @@ gptman
 heim
 helix
 html_parser
+intel-mkl-tool
 jless
 kmon
 leetcode-cli
@@ -45,9 +46,11 @@ rustdesk
 rusty-krab-manager
 rustygit
 sane-fmt
+semverver
 sgxs-tools
 spl-token-cli
 szyszka
 tauri-bundler
 tp-note
 update
+watchexec
