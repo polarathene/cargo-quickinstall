@@ -24,8 +24,11 @@ cargo-update
 cargo-vendor
 duct
 emplace
+fd
+fw
 git_lab_cli
 gptman
+helix-term
 intel-mkl-tool
 leetcode-cli
 my-iot
