@@ -1,13 +1,13 @@
 broot
 cargo-bitbake
 cargo-bpf
-cargo-guppy
 cargo-travis
 cloudflare-ddns-update
 crossterm
 duct
 fd
 frawk
+fw
 gptman
 helix-term
 intel-mkl-tool
@@ -16,6 +16,7 @@ log
 my-iot
 name
 nitrocli
+odbcsv
 pqueue
 rand
 regress
