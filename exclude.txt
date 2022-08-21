@@ -78,6 +78,7 @@ sgxs-tools
 sheldon
 spl-token-cli
 spotify-tui
+starship
 tab
 tauri-bundler
 tickrs
