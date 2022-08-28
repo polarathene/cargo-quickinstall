@@ -4,12 +4,14 @@ cargo-bitbake
 cargo-bom
 cargo-bpf
 cargo-c
+cargo-chef
 cargo-clone
 cargo-compete
 cargo-dephell
 cargo-edit
 cargo-geiger
 cargo-index
+cargo-insta
 cargo-instruments
 cargo-local-registry
 cargo-outdated
@@ -22,6 +24,8 @@ cargo-travis
 cargo-unleash
 cargo-update
 cargo-vendor
+cargo-whatfeatures
+du-dust
 duct
 emplace
 fd
@@ -37,11 +41,11 @@ odbcsv
 project_init
 regress
 rerast
-sane-fmt
 scryer-prolog
 semverver
 sgxs-tools
 sheldon
+spl-token-cli
 tab
 tauri-bundler
 tickrs
