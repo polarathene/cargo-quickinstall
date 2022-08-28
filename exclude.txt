@@ -1,9 +1,13 @@
 broot
 cargo-bitbake
 cargo-bpf
+cargo-chef
+cargo-insta
 cargo-travis
+cargo-whatfeatures
 cloudflare-ddns-update
 crossterm
+du-dust
 duct
 fd
 frawk
@@ -25,9 +29,9 @@ rip
 run_script
 rust-analyzer
 rustpython
-sane-fmt
 semverver
 sgxs-tools
+spl-token-cli
 tauri-bundler
 v8
 vector
