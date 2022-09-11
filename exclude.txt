@@ -4,6 +4,7 @@ cargo-bitbake
 cargo-bom
 cargo-bpf
 cargo-c
+cargo-chef
 cargo-clone
 cargo-clone-crate
 cargo-compete
@@ -17,14 +18,17 @@ cargo-geiger
 cargo-grammarly
 cargo-index
 cargo-info
+cargo-insta
 cargo-instruments
 cargo-local-registry
+cargo-make
 cargo-outdated
 cargo-pants
 cargo-pgx
 cargo-raze
 cargo-release
 cargo-show
+cargo-skyline
 cargo-spellcheck
 cargo-tarpaulin
 cargo-test-all
@@ -37,6 +41,7 @@ cargo-vendor
 cargo-web
 cargo-whatfeatures
 diesel_cli
+du-dust
 emplace
 fd
 ferium
@@ -44,9 +49,9 @@ feroxbuster
 ffsend
 flutter_rust_bridge
 fw
+git-delta
 git_lab_cli
 gitui
-gptman
 helix
 html_parser
 intel-mkl-tool
@@ -70,7 +75,6 @@ rq
 rust-analyzer
 rust-latest
 rusty-krab-manager
-sccache
 scryer-prolog
 sea-orm-cli
 semverver
@@ -85,8 +89,6 @@ tickrs
 tp-note
 tuftool
 update
-wasm-bindgen-cli
-wasm-pack
 watchexec
 webdriver-install
 wrangler
