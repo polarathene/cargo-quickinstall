@@ -1,9 +1,14 @@
+      6 +::set-output name=crate_to_build::sane-fmt ::set-output name=version_to_build::0.14.0
 broot
 cargo-bitbake
 cargo-bpf
 cargo-chef
 cargo-insta
+cargo-make
+cargo-skyline
+cargo-tarpaulin
 cargo-travis
+cargo-update
 cargo-whatfeatures
 cloudflare-ddns-update
 crossterm
@@ -12,7 +17,7 @@ duct
 fd
 frawk
 fw
-gptman
+git-delta
 helix-term
 intel-mkl-tool
 libc
@@ -29,6 +34,7 @@ rip
 run_script
 rust-analyzer
 rustpython
+sane-fmt
 semverver
 sgxs-tools
 spl-token-cli
