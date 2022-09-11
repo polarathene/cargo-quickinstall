@@ -20,7 +20,6 @@ exa
 feroxbuster
 fw
 gitui
-gptman
 intel-mkl-tool
 kmon
 kubie
@@ -43,7 +42,6 @@ spl-token-cli
 starship
 tab
 tauri
-tauri-bundler
 tin-summer
 watchexec
 wrangler
