@@ -1,11 +1,24 @@
       8 +::set-output name=crate_to_build::sane-fmt ::set-output name=version_to_build::0.14.0
 broot
+cargo-audit
+cargo-bitbake
+cargo-bom
+cargo-bpf
+cargo-c
 cargo-chef
+cargo-clone
+cargo-compete
+cargo-dephell
+cargo-edit
+cargo-geiger
+cargo-index
 cargo-insta
+cargo-instruments
 cargo-local-registry
 cargo-make
 cargo-outdated
 cargo-raze
+cargo-release
 cargo-script
 cargo-skyline
 cargo-tarpaulin
