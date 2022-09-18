@@ -20,10 +20,12 @@ exa
 feroxbuster
 fw
 gitui
+gptman
 intel-mkl-tool
 kmon
 kubie
 leetcode-cli
+macchina
 my-iot
 natls
 nitrocli
@@ -41,8 +43,7 @@ skim
 spl-token-cli
 starship
 tab
-tauri
+tauri-bundler
 tin-summer
 watchexec
-wrangler
 zellij
