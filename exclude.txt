@@ -1,6 +1,5 @@
       6 +::set-output name=crate_to_build::sane-fmt ::set-output name=version_to_build::0.14.0
 broot
-cargo-bitbake
 cargo-bpf
 cargo-chef
 cargo-insta
@@ -10,7 +9,6 @@ cargo-tarpaulin
 cargo-travis
 cargo-update
 cargo-whatfeatures
-cloudflare-ddns-update
 crossterm
 du-dust
 duct
@@ -18,10 +16,12 @@ fd
 frawk
 fw
 git-delta
+gptman
 helix-term
 intel-mkl-tool
 libc
 log
+macchina
 my-iot
 name
 nitrocli
@@ -30,15 +30,12 @@ pqueue
 rand
 regress
 rerast
-rip
 run_script
 rust-analyzer
-rustpython
 sane-fmt
 semverver
 sgxs-tools
 spl-token-cli
-tauri-bundler
 v8
 vector
 watchexec
