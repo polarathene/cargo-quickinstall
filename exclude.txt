@@ -6,7 +6,6 @@ cargo-insta
 cargo-instruments
 cargo-kcov
 cargo-make
-cargo-pgx
 cargo-profiler
 cargo-tarpaulin
 cargo-travis
@@ -41,9 +40,9 @@ semverver
 sgxs-tools
 skim
 spl-token-cli
-starship
 tab
 tauri-bundler
 tin-summer
 watchexec
+wrangler
 zellij
