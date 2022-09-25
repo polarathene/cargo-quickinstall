@@ -1,5 +1,4 @@
       6 +::set-output name=crate_to_build::probe-rs ::set-output name=version_to_build::0.13.0
-cargo-bpf
 cargo-chef
 cargo-insta
 cargo-instruments
@@ -25,14 +24,17 @@ helix
 html_parser
 intel-mkl-tool
 kmon
+leetcode-cli
 ls
 macchina
 my-iot
 neowatch
+nitrocli
 odbcsv
 probe-rs-cli
 qsv
 regress
+rerast
 rip
 rq
 rust-analyzer
@@ -41,5 +43,7 @@ rustygit
 semverver
 sgxs-tools
 spl-token-cli
+tauri-bundler
+tp-note
 update
 watchexec
