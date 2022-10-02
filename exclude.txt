@@ -33,7 +33,6 @@ cargo-spellcheck
 cargo-tarpaulin
 cargo-test-all
 cargo-travis
-cargo-udeps
 cargo-unleash
 cargo-update
 cargo-updater
@@ -52,6 +51,7 @@ fw
 git-delta
 git_lab_cli
 gitui
+gptman
 helix
 html_parser
 intel-mkl-tool
@@ -59,6 +59,7 @@ investments
 kmon
 leetcode-cli
 ls
+macchina
 mdbook-linkcheck
 monolith
 my-iot
