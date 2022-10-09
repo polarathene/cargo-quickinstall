@@ -1,5 +1,4 @@
       6 +::set-output name=crate_to_build::sane-fmt ::set-output name=version_to_build::0.14.0
-broot
 cargo-bpf
 cargo-chef
 cargo-insta
@@ -13,7 +12,6 @@ crossterm
 du-dust
 duct
 fd
-frawk
 fw
 git-delta
 gptman
@@ -36,6 +34,6 @@ sane-fmt
 semverver
 sgxs-tools
 spl-token-cli
+tauri-bundler
 v8
-vector
 watchexec
