@@ -1,5 +1,4 @@
       8 +::set-output name=crate_to_build::sane-fmt ::set-output name=version_to_build::0.14.0
-broot
 cargo-audit
 cargo-bitbake
 cargo-bom
@@ -49,7 +48,6 @@ sane-fmt
 scryer-prolog
 semverver
 sgxs-tools
-sheldon
 spl-token-cli
 tab
 tauri-bundler
