@@ -16,6 +16,7 @@ cargo-instruments
 cargo-local-registry
 cargo-make
 cargo-outdated
+cargo-pgx
 cargo-raze
 cargo-release
 cargo-script
@@ -50,5 +51,4 @@ semverver
 sgxs-tools
 spl-token-cli
 tab
-tauri-bundler
 watchexec
