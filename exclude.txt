@@ -1,9 +1,9 @@
-      6 +::set-output name=crate_to_build::probe-rs ::set-output name=version_to_build::0.13.0
 cargo-bpf
 cargo-chef
 cargo-insta
 cargo-instruments
 cargo-make
+cargo-modules
 cargo-pgx
 cargo-skyline
 cargo-tarpaulin
@@ -15,17 +15,14 @@ duct
 fw
 git-delta
 gptman
-intel-mkl-tool
 kmon
 leetcode-cli
 macchina
 my-iot
 nitrocli
 odbcsv
-probe-rs-cli
 regress
 rerast
-rust-analyzer
 semverver
 sgxs-tools
 spl-token-cli
