@@ -15,6 +15,7 @@ cargo-insta
 cargo-instruments
 cargo-local-registry
 cargo-make
+cargo-modules
 cargo-outdated
 cargo-pgx
 cargo-raze
@@ -35,6 +36,7 @@ git-delta
 git_lab_cli
 gptman
 intel-mkl-tool
+itm
 leetcode-cli
 macchina
 my-iot
