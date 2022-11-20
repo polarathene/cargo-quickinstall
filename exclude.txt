@@ -1,4 +1,5 @@
       6 +::set-output name=crate_to_build::sane-fmt ::set-output name=version_to_build::0.14.0
+cargo-bpf
 cargo-chef
 cargo-insta
 cargo-make
@@ -6,17 +7,23 @@ cargo-modules
 cargo-pgx
 cargo-skyline
 cargo-tarpaulin
+cargo-travis
 cargo-update
 cargo-whatfeatures
 du-dust
+duct
 fw
 git-delta
 gptman
+intel-mkl-tool
 macchina
 my-iot
+nitrocli
 odbcsv
 regress
+rerast
 sane-fmt
+semverver
 sgxs-tools
 spl-token-cli
 tauri-bundler
