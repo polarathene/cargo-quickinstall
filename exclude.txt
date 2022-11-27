@@ -22,16 +22,15 @@ cargo-raze
 cargo-release
 cargo-script
 cargo-skyline
+cargo-spellcheck
 cargo-tarpaulin
 cargo-travis
 cargo-unleash
 cargo-update
 cargo-vendor
 cargo-whatfeatures
-du-dust
 duct
 emplace
-fw
 git-delta
 git_lab_cli
 gptman
