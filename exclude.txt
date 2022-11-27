@@ -6,6 +6,7 @@ cargo-make
 cargo-modules
 cargo-pgx
 cargo-skyline
+cargo-spellcheck
 cargo-tarpaulin
 cargo-travis
 cargo-update
@@ -25,7 +26,9 @@ nitrocli
 odbcsv
 regress
 rerast
+semverver
 sgxs-tools
 spl-token-cli
 tauri-bundler
 tp-note
+watchexec
