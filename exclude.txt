@@ -46,6 +46,7 @@ gitui
 gptman
 intel-mkl-tool
 investments
+itm
 kmon
 leetcode-cli
 macchina
@@ -62,10 +63,10 @@ semverver
 sgxs-tools
 spl-token-cli
 spotify-tui
-starship
 tab
 tauri-bundler
 tickrs
+tp-note
 tuftool
 watchexec
 webdriver-install
