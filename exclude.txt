@@ -1,9 +1,7 @@
 cargo-bitbake
 cargo-bpf
-cargo-chef
 cargo-crev
 cargo-deb
-cargo-insta
 cargo-instruments
 cargo-kcov
 cargo-make
@@ -12,7 +10,6 @@ cargo-pgx
 cargo-profiler
 cargo-tarpaulin
 cargo-travis
-cargo-whatfeatures
 cicada
 du-dust
 dutree
@@ -21,6 +18,7 @@ feroxbuster
 fw
 gitui
 gptman
+intel-mkl-tool
 itm
 kmon
 kubie
@@ -30,19 +28,15 @@ my-iot
 natls
 nitrocli
 odbcsv
-project_init
 regress
 rerast
 rmesg
 rustscan
 sane-fmt
-scryer-prolog
-semverver
 sgxs-tools
 skim
 spl-token-cli
 tab
 tauri-bundler
-tin-summer
 watchexec
 wrangler
