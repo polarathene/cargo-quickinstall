@@ -3,7 +3,6 @@ cargo-bitbake
 cargo-bom
 cargo-bpf
 cargo-c
-cargo-chef
 cargo-clone
 cargo-clone-crate
 cargo-compete
@@ -16,17 +15,14 @@ cargo-equip
 cargo-geiger
 cargo-index
 cargo-info
-cargo-insta
 cargo-instruments
 cargo-local-registry
-cargo-make
 cargo-outdated
 cargo-pants
 cargo-pgx
 cargo-raze
 cargo-release
 cargo-show
-cargo-skyline
 cargo-spellcheck
 cargo-tarpaulin
 cargo-travis
@@ -35,12 +31,10 @@ cargo-update
 cargo-vendor
 cargo-web
 cargo-whatfeatures
-du-dust
 emplace
 feroxbuster
 ffsend
 fw
-git-delta
 git_lab_cli
 gitui
 gptman
@@ -63,6 +57,7 @@ semverver
 sgxs-tools
 spl-token-cli
 spotify-tui
+starship
 tab
 tauri-bundler
 tickrs
