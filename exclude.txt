@@ -7,7 +7,6 @@ duct
 gptman
 intel-mkl-tool
 itm
-macchina
 my-iot
 nitrocli
 regress
