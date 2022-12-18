@@ -13,13 +13,11 @@ exa
 feroxbuster
 fw
 gitui
-gptman
 intel-mkl-tool
 itm
 kmon
 kubie
 leetcode-cli
-macchina
 my-iot
 natls
 nitrocli
@@ -32,7 +30,7 @@ semverver
 sgxs-tools
 skim
 tab
-tauri-bundler
 tin-summer
+tp-note
 watchexec
 wrangler
