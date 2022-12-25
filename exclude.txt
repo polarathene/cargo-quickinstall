@@ -4,7 +4,6 @@ cargo-pgx
 cargo-spellcheck
 cargo-travis
 duct
-gptman
 intel-mkl-tool
 itm
 my-iot
