@@ -85,13 +85,6 @@ jobs:
           ref: actions
           path: cargo-quickinstall
 
-      - name: Download binary artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: built-windows-latest
-          # TODO: check that we it can't write anywhere other than built.d
-          path: ${{github.workspace}}/built.d
-
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
         uses: andymckay/cancel-action@0.3
@@ -101,6 +94,13 @@ jobs:
         run: |
           sleep 1m
           exit 1
+
+      - name: Download binary artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: built-windows-latest
+          # TODO: check that we it can't write anywhere other than built.d
+          path: ${{github.workspace}}/built.d
 
       - name: Tag release
         run: |
