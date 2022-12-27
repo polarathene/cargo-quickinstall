@@ -52,6 +52,12 @@ jobs:
       # I'm not sure whether the js actions runtime is also affected by this.
       # TODO: try breaking things so that uploads don't work.
 
+      - name: Check if tarball exists
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-apple-darwin.tar.gz
+
       - name: Upload run-local binary artifact
         uses: actions/upload-artifact@v3
         with:
@@ -85,12 +91,6 @@ jobs:
           name: built-macos-latest
           # TODO: check that we it can't write anywhere other than built.d
           path: ${{github.workspace}}/built.d
-
-      - name: Check if tarball exists
-        id: check_files
-        uses: andstor/file-existence-action@v2
-        with:
-          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
