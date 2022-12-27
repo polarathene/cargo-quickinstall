@@ -47,24 +47,18 @@ jobs:
           export VERSION=0.2.6
 
           cargo-quickinstall/build-version.sh "${CRATE}"
+          touch $TEMPDIR/dummy-file
           ls $TEMPDIR
       # At this point, I don't think that you can really trust anything on the system anymore.
       # I'm not sure whether the js actions runtime is also affected by this.
       # TODO: try breaking things so that uploads don't work.
-
-      - name: Check if tarball exists
-        id: check_files
-        uses: andstor/file-existence-action@v2
-        with:
-          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-unknown-linux-musl.tar.gz
 
       - name: Upload run-local binary artifact
         uses: actions/upload-artifact@v3
         with:
           name: built-ubuntu-20.04
           path: ${{github.workspace}}/built.d
-          if-no-files-found: warn
-
+          if-no-files-found: error
 
   upload-popular-package:
     name: Upload
@@ -85,6 +79,19 @@ jobs:
           ref: actions
           path: cargo-quickinstall
 
+      - name: Download binary artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: built-ubuntu-20.04
+          # TODO: check that we it can't write anywhere other than built.d
+          path: ${{github.workspace}}/built.d
+
+      - name: Check if tarball exists
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-unknown-linux-musl.tar.gz
+
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
         uses: andymckay/cancel-action@0.3
@@ -94,13 +101,6 @@ jobs:
         run: |
           sleep 1m
           exit 1
-
-      - name: Download binary artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: built-ubuntu-20.04
-          # TODO: check that we it can't write anywhere other than built.d
-          path: ${{github.workspace}}/built.d
 
       - name: Tag release
         run: |
