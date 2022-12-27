@@ -35,3 +35,4 @@ tauri-bundler
 tin-summer
 tp-note
 watchexec
+wrangler
