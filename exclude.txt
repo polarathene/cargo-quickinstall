@@ -43,7 +43,6 @@ investments
 itm
 kmon
 leetcode-cli
-macchina
 my-iot
 nitrocli
 odbcsv
