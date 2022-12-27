@@ -9,9 +9,14 @@ duct
 gptman
 intel-mkl-tool
 itm
+leetcode-cli
 my-iot
+nitrocli
 regress
+rerast
 semverver
 sgxs-tools
 spl-token-cli
+tauri-bundler
+tp-note
 watchexec
