@@ -1,7 +1,7 @@
 name: Build for x86_64-apple-darwin
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.6, x86_64-apple-darwin, actions and macos-latest are replaced using sed.
+# cargo-quickinstall, 0.2.6, x86_64-apple-darwin, main and macos-latest are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -19,15 +19,15 @@ jobs:
         shell: bash
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: build package
@@ -52,24 +52,8 @@ jobs:
       # I'm not sure whether the js actions runtime is also affected by this.
       # TODO: try breaking things so that uploads don't work.
 
-      - name: Check if tarball exists
-        id: check_files_1
-        uses: andstor/file-existence-action@v2
-        with:
-          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-apple-darwin.tar.gz
-
-      - name: Cancel if no tarball
-        if: steps.check_files_1.outputs.files_exists == 'false'
-        uses: andymckay/cancel-action@0.2
-
-      - name: Wait for cancellation signal if no tarball
-        if: steps.check_files_2.outputs.files_exists == 'false'
-        run: |
-          sleep 1m
-          exit 1
-
       - name: Create binary artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: built-macos-latest
           path: ${{github.workspace}}/built.d
@@ -82,38 +66,38 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           ssh-key: ${{ secrets.CRONJOB_DEPLOY_KEY }}
           persist-credentials: true
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: Download binary artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: built-macos-latest
           # TODO: check that we it can't write anywhere other than built.d
           path: ${{github.workspace}}/built.d
 
       - name: Check if tarball exists
-        id: check_files_2
-        uses: andstor/file-existence-action@v2
+        id: check_files
+        uses: andstor/file-existence-action@v1
         with:
           files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
-        if: steps.check_files_2.outputs.files_exists == 'false'
+        if: steps.check_files.outputs.files_exists == 'false'
         uses: andymckay/cancel-action@0.2
 
       - name: Wait for cancellation signal if no tarball
-        if: steps.check_files_2.outputs.files_exists == 'false'
+        if: steps.check_files.outputs.files_exists == 'false'
         run: |
           sleep 1m
           exit 1
