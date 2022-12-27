@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-musl
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.6, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
+# cargo-quickinstall, 0.2.6, x86_64-unknown-linux-musl, actions and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/alsuren/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -19,15 +19,15 @@ jobs:
         shell: bash
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
-          ref: main
+          ref: actions
           path: cargo-quickinstall
 
       - name: build package
@@ -52,12 +52,12 @@ jobs:
       # I'm not sure whether the js actions runtime is also affected by this.
       # TODO: try breaking things so that uploads don't work.
 
-      - name: Create binary artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload run-local binary artifact
+        uses: actions/upload-artifact@v3
         with:
           name: built-ubuntu-20.04
           path: ${{github.workspace}}/built.d
-          if-no-files-found: error
+          if-no-files-found: warn
 
 
   upload-popular-package:
@@ -66,21 +66,21 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.CRONJOB_DEPLOY_KEY }}
           persist-credentials: true
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: main
+          ref: actions
           path: cargo-quickinstall
 
       - name: Download binary artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: built-ubuntu-20.04
           # TODO: check that we it can't write anywhere other than built.d
@@ -88,13 +88,13 @@ jobs:
 
       - name: Check if tarball exists
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v2
         with:
           files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-unknown-linux-musl.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.3
 
       - name: Wait for cancellation signal if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
