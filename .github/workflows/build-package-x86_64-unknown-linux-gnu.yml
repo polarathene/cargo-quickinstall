@@ -1,8 +1,8 @@
 name: Build for x86_64-unknown-linux-gnu
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.6, x86_64-unknown-linux-gnu, actions and ubuntu-20.04 are replaced using sed.
-# Title of job in https://github.com/alsuren/cargo-quickinstall/actions
+# cargo-quickinstall, 0.2.6, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
+# Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
   push:
@@ -19,15 +19,15 @@ jobs:
         shell: bash
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: build package
@@ -47,18 +47,18 @@ jobs:
           export VERSION=0.2.6
 
           cargo-quickinstall/build-version.sh "${CRATE}"
-          touch $TEMPDIR/dummy-file
           ls $TEMPDIR
       # At this point, I don't think that you can really trust anything on the system anymore.
       # I'm not sure whether the js actions runtime is also affected by this.
       # TODO: try breaking things so that uploads don't work.
 
-      - name: Upload run-local binary artifact
-        uses: actions/upload-artifact@v3
+      - name: Create binary artifact
+        uses: actions/upload-artifact@v2
         with:
           name: built-ubuntu-20.04
           path: ${{github.workspace}}/built.d
           if-no-files-found: error
+
 
   upload-popular-package:
     name: Upload
@@ -66,21 +66,21 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           ssh-key: ${{ secrets.CRONJOB_DEPLOY_KEY }}
           persist-credentials: true
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: Download binary artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: built-ubuntu-20.04
           # TODO: check that we it can't write anywhere other than built.d
@@ -88,13 +88,13 @@ jobs:
 
       - name: Check if tarball exists
         id: check_files
-        uses: andstor/file-existence-action@v2
+        uses: andstor/file-existence-action@v1
         with:
           files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
-        uses: andymckay/cancel-action@0.3
+        uses: andymckay/cancel-action@0.2
 
       - name: Wait for cancellation signal if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
