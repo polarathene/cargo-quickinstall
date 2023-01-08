@@ -1,4 +1,3 @@
-cargo-bpf
 cargo-c
 cargo-instruments
 cargo-modules
@@ -15,6 +14,7 @@ nitrocli
 regress
 rerast
 semverver
+sensei
 sgxs-tools
 spl-token-cli
 tauri-bundler
