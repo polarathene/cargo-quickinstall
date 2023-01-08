@@ -4,7 +4,6 @@ cargo-deb
 cargo-instruments
 cargo-kcov
 cargo-modules
-cargo-pgx
 cargo-profiler
 cargo-travis
 cicada
@@ -36,3 +35,4 @@ tin-summer
 tp-note
 watchexec
 wrangler
+zellij
