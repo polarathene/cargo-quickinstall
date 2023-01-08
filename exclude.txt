@@ -6,6 +6,7 @@ cargo-c
 cargo-clone
 cargo-compete
 cargo-dephell
+cargo-ebuild
 cargo-edit
 cargo-geiger
 cargo-index
@@ -20,6 +21,7 @@ cargo-script
 cargo-spellcheck
 cargo-tarpaulin
 cargo-travis
+cargo-udeps
 cargo-unleash
 cargo-update
 cargo-vendor
