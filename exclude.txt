@@ -10,9 +10,11 @@ cargo-crev
 cargo-deny
 cargo-dephell
 cargo-download
+cargo-ebuild
 cargo-edit
 cargo-equip
 cargo-geiger
+cargo-generate
 cargo-index
 cargo-info
 cargo-instruments
@@ -26,6 +28,7 @@ cargo-show
 cargo-spellcheck
 cargo-tarpaulin
 cargo-travis
+cargo-udeps
 cargo-unleash
 cargo-update
 cargo-vendor
@@ -37,12 +40,12 @@ ffsend
 fw
 git_lab_cli
 gitui
-gptman
 intel-mkl-tool
 investments
 itm
 kmon
 leetcode-cli
+mdbook-linkcheck
 my-iot
 nitrocli
 odbcsv
@@ -51,6 +54,7 @@ regress
 rerast
 rexcli
 rust-latest
+sccache
 scryer-prolog
 semverver
 sgxs-tools
@@ -62,6 +66,7 @@ tauri-bundler
 tickrs
 tp-note
 tuftool
+wasm-bindgen-cli
 watchexec
 webdriver-install
 wrangler
