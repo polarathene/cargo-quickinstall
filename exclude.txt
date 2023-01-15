@@ -44,3 +44,4 @@ sgxs-tools
 tab
 tauri-bundler
 watchexec
+zoxide
