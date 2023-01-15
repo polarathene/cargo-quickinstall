@@ -13,5 +13,4 @@ regress
 rerast
 semverver
 sgxs-tools
-tauri-bundler
 watchexec
