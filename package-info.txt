@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::ripgrep
-::set-output name=version_to_build::13.0.0
+::set-output name=crate_to_build::tauri-bundler
+::set-output name=version_to_build::2.0.0-alpha.0
 ::set-output name=arch_to_build::x86_64-apple-darwin
