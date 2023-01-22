@@ -14,7 +14,6 @@ cargo-instruments
 cargo-local-registry
 cargo-modules
 cargo-outdated
-cargo-pgx
 cargo-raze
 cargo-release
 cargo-script
