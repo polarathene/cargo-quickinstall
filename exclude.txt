@@ -1,6 +1,6 @@
 cargo-bpf
+cargo-c
 cargo-crev
-cargo-deb
 cargo-instruments
 cargo-kcov
 cargo-modules
