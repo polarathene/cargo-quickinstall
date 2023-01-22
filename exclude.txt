@@ -1,6 +1,5 @@
 cargo-bpf
 cargo-modules
-cargo-pgx
 cargo-spellcheck
 cargo-travis
 duct
@@ -13,4 +12,5 @@ regress
 rerast
 semverver
 sgxs-tools
+tauri-bundler
 watchexec
