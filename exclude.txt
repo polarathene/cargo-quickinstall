@@ -2,7 +2,6 @@ cargo-bpf
 cargo-c
 cargo-instruments
 cargo-modules
-cargo-pgx
 cargo-spellcheck
 cargo-travis
 duct
@@ -14,6 +13,7 @@ my-iot
 nitrocli
 regress
 rerast
+ripgrep
 semverver
 sensei
 sgxs-tools
