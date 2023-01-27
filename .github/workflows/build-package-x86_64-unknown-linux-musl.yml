@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-musl
 
 # Triggered by push from cronjob.
-# cargo-spellcheck, 0.12.3, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
+# cargo-about, 0.5.3, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -42,9 +42,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-spellcheck
+          export CRATE=cargo-about
           export TARGET_ARCH=x86_64-unknown-linux-musl
-          export VERSION=0.12.3
+          export VERSION=0.5.3
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -90,7 +90,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-spellcheck-0.12.3-x86_64-unknown-linux-musl.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-about-0.5.3-x86_64-unknown-linux-musl.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -106,15 +106,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag cargo-spellcheck-0.12.3-x86_64-unknown-linux-musl
-            git push origin cargo-spellcheck-0.12.3-x86_64-unknown-linux-musl
+            git tag cargo-about-0.5.3-x86_64-unknown-linux-musl
+            git push origin cargo-about-0.5.3-x86_64-unknown-linux-musl
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: cargo-spellcheck-0.12.3-x86_64-unknown-linux-musl
+          tag_name: cargo-about-0.5.3-x86_64-unknown-linux-musl
           files: |
-            ${{github.workspace}}/built.d/cargo-spellcheck-0.12.3-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/cargo-about-0.5.3-x86_64-unknown-linux-musl.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
