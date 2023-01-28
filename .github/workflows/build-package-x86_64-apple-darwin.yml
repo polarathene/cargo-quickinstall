@@ -1,7 +1,7 @@
 name: Build for x86_64-apple-darwin
 
 # Triggered by push from cronjob.
-# cargo-c, 0.9.16+cargo-0.68, x86_64-apple-darwin, main and macos-latest are replaced using sed.
+# watchexec, 2.1.0, x86_64-apple-darwin, actions and macos-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -27,12 +27,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-          ref: main
+          ref: actions
           path: cargo-quickinstall
-
-      - uses: taiki-e/install-action@v2
-        with:
-          tool: cargo-auditable
 
       - name: build package
         env:
@@ -46,9 +42,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-c
+          export CRATE=watchexec
           export TARGET_ARCH=x86_64-apple-darwin
-          export VERSION=0.9.16+cargo-0.68
+          export VERSION=2.1.0
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -80,7 +76,7 @@ jobs:
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: main
+          ref: actions
           path: cargo-quickinstall
 
       - name: Download binary artifact
@@ -94,7 +90,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-c-0.9.16+cargo-0.68-x86_64-apple-darwin.tar.gz
+          files: ${{github.workspace}}/built.d/watchexec-2.1.0-x86_64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -110,15 +106,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag cargo-c-0.9.16+cargo-0.68-x86_64-apple-darwin
-            git push origin cargo-c-0.9.16+cargo-0.68-x86_64-apple-darwin
+            git tag watchexec-2.1.0-x86_64-apple-darwin
+            git push origin watchexec-2.1.0-x86_64-apple-darwin
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: cargo-c-0.9.16+cargo-0.68-x86_64-apple-darwin
+          tag_name: watchexec-2.1.0-x86_64-apple-darwin
           files: |
-            ${{github.workspace}}/built.d/cargo-c-0.9.16+cargo-0.68-x86_64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/watchexec-2.1.0-x86_64-apple-darwin.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
