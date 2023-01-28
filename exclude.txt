@@ -9,14 +9,11 @@ gptman
 intel-mkl-tool
 itm
 leetcode-cli
-my-iot
 nitrocli
-regress
 rerast
 ripgrep
 semverver
 sensei
-sgxs-tools
 spl-token-cli
 tauri-bundler
 tp-note
