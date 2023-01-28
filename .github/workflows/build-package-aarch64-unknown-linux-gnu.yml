@@ -1,8 +1,8 @@
 name: Build for aarch64-unknown-linux-gnu
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.6, aarch64-unknown-linux-gnu, actions and ubuntu-20.04 are replaced using sed.
-# Title of job in https://github.com/alsuren/cargo-quickinstall/actions
+# cargo-quickinstall, 0.2.7, aarch64-unknown-linux-gnu, actions and ubuntu-20.04 are replaced using sed.
+# Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
   push:
@@ -13,17 +13,18 @@ jobs:
   build-popular-package:
     name: Build
     runs-on: ubuntu-20.04
+    permissions: {}
     defaults:
       run:
         shell: bash
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           ref: actions
@@ -43,21 +44,21 @@ jobs:
 
           export CRATE=cargo-quickinstall
           export TARGET_ARCH=aarch64-unknown-linux-gnu
-          export VERSION=0.2.6
+          export VERSION=0.2.7
 
           cargo-quickinstall/build-version.sh "${CRATE}"
+          touch $TEMPDIR/dummy-file
           ls $TEMPDIR
       # At this point, I don't think that you can really trust anything on the system anymore.
       # I'm not sure whether the js actions runtime is also affected by this.
       # TODO: try breaking things so that uploads don't work.
 
-      - name: Create binary artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload run-local binary artifact
+        uses: actions/upload-artifact@v3
         with:
           name: built-ubuntu-20.04
           path: ${{github.workspace}}/built.d
           if-no-files-found: error
-
 
   upload-popular-package:
     name: Upload
@@ -65,12 +66,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout trigger commit
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
+          ssh-key: ${{ secrets.CRONJOB_DEPLOY_KEY }}
           persist-credentials: true
           path: trigger
       - name: Checkout main repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
@@ -78,7 +80,7 @@ jobs:
           path: cargo-quickinstall
 
       - name: Download binary artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: built-ubuntu-20.04
           # TODO: check that we it can't write anywhere other than built.d
@@ -86,13 +88,13 @@ jobs:
 
       - name: Check if tarball exists
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-aarch64-unknown-linux-gnu.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.7-aarch64-unknown-linux-gnu.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.3
 
       - name: Wait for cancellation signal if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -104,15 +106,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag cargo-quickinstall-0.2.6-aarch64-unknown-linux-gnu
-            git push origin cargo-quickinstall-0.2.6-aarch64-unknown-linux-gnu
+            git tag cargo-quickinstall-0.2.7-aarch64-unknown-linux-gnu
+            git push origin cargo-quickinstall-0.2.7-aarch64-unknown-linux-gnu
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: cargo-quickinstall-0.2.6-aarch64-unknown-linux-gnu
+          tag_name: cargo-quickinstall-0.2.7-aarch64-unknown-linux-gnu
           files: |
-            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.6-aarch64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.7-aarch64-unknown-linux-gnu.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
