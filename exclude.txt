@@ -1,4 +1,5 @@
 cargo-audit
+cargo-auditable
 cargo-bitbake
 cargo-bom
 cargo-bpf
@@ -41,6 +42,5 @@ scryer-prolog
 semverver
 sgxs-tools
 tab
-tauri-bundler
 watchexec
 zoxide
