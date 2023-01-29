@@ -1,7 +1,7 @@
 name: Build for x86_64-pc-windows-msvc
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.7, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
+# cargo-quickinstall, 0.2.7, x86_64-pc-windows-msvc, actions and windows-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-          ref: main
+          ref: actions
           path: cargo-quickinstall
 
       - uses: taiki-e/install-action@v2
@@ -80,7 +80,7 @@ jobs:
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: main
+          ref: actions
           path: cargo-quickinstall
 
       - name: Download binary artifact
