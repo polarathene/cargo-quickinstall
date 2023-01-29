@@ -1,5 +1,4 @@
 cargo-bpf
-cargo-c
 cargo-crev
 cargo-instruments
 cargo-kcov
