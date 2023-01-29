@@ -12,3 +12,4 @@ nitrocli
 rerast
 semverver
 tauri-bundler
+watchexec
