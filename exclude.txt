@@ -1,5 +1,4 @@
 cargo-audit
-cargo-auditable
 cargo-bitbake
 cargo-bom
 cargo-bpf
@@ -25,7 +24,6 @@ cargo-udeps
 cargo-unleash
 cargo-update
 cargo-vendor
-duct
 emplace
 git_lab_cli
 gptman
