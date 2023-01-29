@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::cargo-sort-ck
-::set-output name=version_to_build::2.2.2
+::set-output name=crate_to_build::tauri-bundler
+::set-output name=version_to_build::2.0.0-alpha.0
 ::set-output name=arch_to_build::aarch64-apple-darwin
