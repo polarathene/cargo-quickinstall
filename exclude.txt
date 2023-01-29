@@ -1,4 +1,4 @@
-     74 +::set-output name=crate_to_build::mdcat ::set-output name=version_to_build::1.0.0
+  74 +::set-output name=crate_to_build::mdcat ::set-output name=version_to_build::1.0.0
 cargo-audit
 cargo-bitbake
 cargo-bom
@@ -40,5 +40,6 @@ tickrs
 tp-note
 tuftool
 wasm-bindgen-cli
+watchexec
 webdriver-install
 wrangler
