@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::taplo-cli
-::set-output name=version_to_build::0.8.0
+::set-output name=crate_to_build::mdbook-linkcheck
+::set-output name=version_to_build::0.7.7
 ::set-output name=arch_to_build::aarch64-unknown-linux-gnu
