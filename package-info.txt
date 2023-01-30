@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::cargo-quickinstall
-::set-output name=version_to_build::0.2.8
+::set-output name=crate_to_build::sgxs-tools
+::set-output name=version_to_build::0.8.6
 ::set-output name=arch_to_build::x86_64-unknown-linux-gnu
