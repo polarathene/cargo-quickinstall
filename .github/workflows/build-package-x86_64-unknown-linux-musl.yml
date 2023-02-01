@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-musl
 
 # Triggered by push from cronjob.
-# cargo-outdated, 0.11.2, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
+# cargo-pants, 0.4.8, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-outdated
+          export CRATE=cargo-pants
           export TARGET_ARCH=x86_64-unknown-linux-musl
-          export VERSION=0.11.2
+          export VERSION=0.4.8
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -94,7 +94,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-outdated-0.11.2-x86_64-unknown-linux-musl.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-pants-0.4.8-x86_64-unknown-linux-musl.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -110,15 +110,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag cargo-outdated-0.11.2-x86_64-unknown-linux-musl
-            git push origin cargo-outdated-0.11.2-x86_64-unknown-linux-musl
+            git tag cargo-pants-0.4.8-x86_64-unknown-linux-musl
+            git push origin cargo-pants-0.4.8-x86_64-unknown-linux-musl
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: cargo-outdated-0.11.2-x86_64-unknown-linux-musl
+          tag_name: cargo-pants-0.4.8-x86_64-unknown-linux-musl
           files: |
-            ${{github.workspace}}/built.d/cargo-outdated-0.11.2-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/cargo-pants-0.4.8-x86_64-unknown-linux-musl.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
