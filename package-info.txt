@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::cargo-show
-::set-output name=version_to_build::0.5.9
+::set-output name=crate_to_build::cargo-spellcheck
+::set-output name=version_to_build::0.12.3
 ::set-output name=arch_to_build::aarch64-unknown-linux-gnu
