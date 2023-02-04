@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::wasm-bindgen-cli
-::set-output name=version_to_build::0.2.84
+::set-output name=crate_to_build::sccache
+::set-output name=version_to_build::0.3.3
 ::set-output name=arch_to_build::aarch64-unknown-linux-gnu
