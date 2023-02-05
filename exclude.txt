@@ -8,8 +8,11 @@ elf2tab
 gptman
 intel-mkl-tool
 itm
+my-iot
 nitrocli
+regress
 rerast
 semverver
+sgxs-tools
 tauri-bundler
 watchexec
