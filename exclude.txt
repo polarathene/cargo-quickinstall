@@ -1,14 +1,32 @@
-  74 +::set-output name=crate_to_build::mdcat ::set-output name=version_to_build::1.0.0
+     74 +::set-output name=crate_to_build::mdcat ::set-output name=version_to_build::1.0.0
 cargo-audit
 cargo-bitbake
 cargo-bom
 cargo-bpf
 cargo-c
 cargo-clone
+cargo-clone-crate
+cargo-compete
+cargo-crev
 cargo-deny
+cargo-dephell
+cargo-download
 cargo-ebuild
+cargo-edit
+cargo-equip
+cargo-geiger
 cargo-generate
+cargo-index
+cargo-info
+cargo-instruments
+cargo-local-registry
+cargo-outdated
+cargo-pants
+cargo-raze
+cargo-release
+cargo-show
 cargo-spellcheck
+cargo-tarpaulin
 cargo-udeps
 gptman
 grex
@@ -29,7 +47,6 @@ rust-latest
 sccache
 scryer-prolog
 semverver
-sensei
 sgxs-tools
 spl-token-cli
 spotify-tui
