@@ -1,0 +1,7 @@
+cargo-audit
+cargo-auditable
+cargo-bitbake
+cargo-bom
+cargo-bpf
+cargo-spellcheck
+sccache
