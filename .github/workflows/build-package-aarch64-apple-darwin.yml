@@ -1,7 +1,7 @@
 name: Build for aarch64-apple-darwin
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.8, aarch64-apple-darwin, main and macos-latest are replaced using sed.
+# semantic-release-cargo, 2.1.23, aarch64-apple-darwin, main and macos-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-quickinstall
+          export CRATE=semantic-release-cargo
           export TARGET_ARCH=aarch64-apple-darwin
-          export VERSION=0.2.8
+          export VERSION=2.1.23
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -94,7 +94,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-aarch64-apple-darwin.tar.gz
+          files: ${{github.workspace}}/built.d/semantic-release-cargo-2.1.23-aarch64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -110,15 +110,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag cargo-quickinstall-0.2.8-aarch64-apple-darwin
-            git push origin cargo-quickinstall-0.2.8-aarch64-apple-darwin
+            git tag semantic-release-cargo-2.1.23-aarch64-apple-darwin
+            git push origin semantic-release-cargo-2.1.23-aarch64-apple-darwin
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: cargo-quickinstall-0.2.8-aarch64-apple-darwin
+          tag_name: semantic-release-cargo-2.1.23-aarch64-apple-darwin
           files: |
-            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-aarch64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/semantic-release-cargo-2.1.23-aarch64-apple-darwin.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
