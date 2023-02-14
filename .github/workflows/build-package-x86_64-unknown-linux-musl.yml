@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-musl
 
 # Triggered by push from cronjob.
-# mdbook, 0.4.27, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
+# dprint, 0.34.5, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=mdbook
+          export CRATE=dprint
           export TARGET_ARCH=x86_64-unknown-linux-musl
-          export VERSION=0.4.27
+          export VERSION=0.34.5
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -94,7 +94,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/mdbook-0.4.27-x86_64-unknown-linux-musl.tar.gz
+          files: ${{github.workspace}}/built.d/dprint-0.34.5-x86_64-unknown-linux-musl.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -110,15 +110,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag mdbook-0.4.27-x86_64-unknown-linux-musl
-            git push origin mdbook-0.4.27-x86_64-unknown-linux-musl
+            git tag dprint-0.34.5-x86_64-unknown-linux-musl
+            git push origin dprint-0.34.5-x86_64-unknown-linux-musl
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: mdbook-0.4.27-x86_64-unknown-linux-musl
+          tag_name: dprint-0.34.5-x86_64-unknown-linux-musl
           files: |
-            ${{github.workspace}}/built.d/mdbook-0.4.27-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/dprint-0.34.5-x86_64-unknown-linux-musl.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
