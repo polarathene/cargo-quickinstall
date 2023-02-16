@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::cargo-insta
-::set-output name=version_to_build::1.28.0
+::set-output name=crate_to_build::intel-mkl-tool
+::set-output name=version_to_build::0.8.1
 ::set-output name=arch_to_build::x86_64-unknown-linux-musl
