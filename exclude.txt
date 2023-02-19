@@ -1,7 +1,8 @@
+cargo-auditable
+cargo-binstall
 cargo-bpf
 cargo-c
 cargo-instruments
-cargo-modules
 cargo-spellcheck
 cargo-travis
 duct
