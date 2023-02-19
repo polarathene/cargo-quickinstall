@@ -1,9 +1,9 @@
+cargo-binstall
 cargo-bpf
 cargo-c
 cargo-crev
 cargo-instruments
 cargo-kcov
-cargo-modules
 cargo-pgx
 cargo-profiler
 cargo-travis
