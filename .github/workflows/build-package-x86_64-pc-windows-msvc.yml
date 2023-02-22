@@ -1,7 +1,7 @@
 name: Build for x86_64-pc-windows-msvc
 
 # Triggered by push from cronjob.
-# cargo-generate, 0.18.0, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
+# cargo-quickinstall, 0.2.8, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-generate
+          export CRATE=cargo-quickinstall
           export TARGET_ARCH=x86_64-pc-windows-msvc
-          export VERSION=0.18.0
+          export VERSION=0.2.8
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -94,7 +94,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-generate-0.18.0-x86_64-pc-windows-msvc.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -110,15 +110,15 @@ jobs:
         run: |
           (
             cd trigger
-            git tag cargo-generate-0.18.0-x86_64-pc-windows-msvc
-            git push origin cargo-generate-0.18.0-x86_64-pc-windows-msvc
+            git tag cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc
+            git push origin cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc
           )
 
       - name: Releasing assets
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: cargo-generate-0.18.0-x86_64-pc-windows-msvc
+          tag_name: cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc
           files: |
-            ${{github.workspace}}/built.d/cargo-generate-0.18.0-x86_64-pc-windows-msvc.tar.gz
+            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
