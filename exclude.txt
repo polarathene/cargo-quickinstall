@@ -7,8 +7,6 @@ cargo-spellcheck
 cargo-travis
 duct
 gptman
-intel-mkl-tool
-itm
 leetcode-cli
 my-iot
 nitrocli
@@ -16,6 +14,7 @@ regress
 rerast
 ripgrep
 semverver
+sensei
 sgxs-tools
 spl-token-cli
 tauri-bundler
