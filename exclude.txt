@@ -2,6 +2,7 @@ cargo-binstall
 cargo-bpf
 cargo-c
 cargo-crev
+cargo-generate
 cargo-instruments
 cargo-kcov
 cargo-pgx
@@ -15,7 +16,6 @@ fw
 gitui
 gptman
 intel-mkl-tool
-itm
 kmon
 kubie
 leetcode-cli
