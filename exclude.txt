@@ -1,4 +1,6 @@
 cargo-audit
+cargo-auditable
+cargo-binstall
 cargo-bitbake
 cargo-bom
 cargo-bpf
@@ -12,7 +14,6 @@ cargo-geiger
 cargo-index
 cargo-instruments
 cargo-local-registry
-cargo-modules
 cargo-outdated
 cargo-raze
 cargo-release
@@ -24,16 +25,17 @@ cargo-udeps
 cargo-unleash
 cargo-update
 cargo-vendor
+duct
 emplace
 git_lab_cli
 gptman
 intel-mkl-tool
-itm
 leetcode-cli
 my-iot
 nitrocli
 odbcsv
 project_init
+pueue
 regress
 rerast
 scryer-prolog
