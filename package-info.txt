@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::semantic-release-cargo
-::set-output name=version_to_build::2.1.31
+::set-output name=crate_to_build::intel-mkl-tool
+::set-output name=version_to_build::0.8.1
 ::set-output name=arch_to_build::x86_64-unknown-linux-gnu
