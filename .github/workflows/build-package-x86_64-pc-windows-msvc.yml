@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if !git tag tin-summer-1.21.14; then
+            if ! git tag tin-summer-1.21.14; then
                 echo "tin-summer-1.21.14 tag already exists"
                 echo 'SKIP_NEW_FORMAT=1' >>$GITHUB_ENV
             fi
-            if !git tag tin-summer-1.21.14-x86_64-pc-windows-msvc; then
+            if ! git tag tin-summer-1.21.14-x86_64-pc-windows-msvc; then
                 echo "tin-summer-1.21.14-x86_64-pc-windows-msvc tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
