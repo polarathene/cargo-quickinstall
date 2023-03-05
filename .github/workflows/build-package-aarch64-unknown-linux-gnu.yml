@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if !git tag cargo-quickinstall-0.2.8; then
+            if ! git tag cargo-quickinstall-0.2.8; then
                 echo "cargo-quickinstall-0.2.8 tag already exists"
                 echo 'SKIP_NEW_FORMAT=1' >>$GITHUB_ENV
             fi
-            if !git tag cargo-quickinstall-0.2.8-aarch64-unknown-linux-gnu; then
+            if ! git tag cargo-quickinstall-0.2.8-aarch64-unknown-linux-gnu; then
                 echo "cargo-quickinstall-0.2.8-aarch64-unknown-linux-gnu tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
