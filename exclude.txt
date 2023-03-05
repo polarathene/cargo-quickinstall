@@ -11,6 +11,7 @@ cargo-dephell
 cargo-ebuild
 cargo-edit
 cargo-geiger
+cargo-generate
 cargo-index
 cargo-instruments
 cargo-local-registry
@@ -18,7 +19,6 @@ cargo-outdated
 cargo-raze
 cargo-release
 cargo-script
-cargo-spellcheck
 cargo-tarpaulin
 cargo-travis
 cargo-udeps
@@ -30,6 +30,7 @@ emplace
 git_lab_cli
 gptman
 intel-mkl-tool
+itm
 leetcode-cli
 my-iot
 nitrocli
