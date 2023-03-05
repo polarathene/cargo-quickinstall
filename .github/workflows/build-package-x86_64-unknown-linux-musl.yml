@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-musl
 
 # Triggered by push from cronjob.
-# tp-note, 1.20.1, x86_64-unknown-linux-musl, actions and ubuntu-20.04 are replaced using sed.
+# cargo-quickinstall, 0.2.8, x86_64-unknown-linux-musl, actions and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=tp-note
+          export CRATE=cargo-quickinstall
           export TARGET_ARCH=x86_64-unknown-linux-musl
-          export VERSION=1.20.1
+          export VERSION=0.2.8
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/tp-note-1.20.1-x86_64-unknown-linux-musl.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,12 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh tp-note-1.20.1; then
-                echo "tp-note-1.20.1 tag already exists"
-                echo 'SKIP_NEW_FORMAT=1' >>$GITHUB_ENV
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8; then
+                echo "cargo-quickinstall-0.2.8 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh tp-note-1.20.1-x86_64-unknown-linux-musl; then
-                echo "tp-note-1.20.1-x86_64-unknown-linux-musl tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl; then
+                echo "cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -129,19 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: tp-note-1.20.1-x86_64-unknown-linux-musl
-          release_name: tp-note-1.20.1-x86_64-unknown-linux-musl
-          body: build tp-note@1.20.1 on x86_64-unknown-linux-musl
+          tag: cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl
+          release_name: cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl
+          body: build cargo-quickinstall@0.2.8 on x86_64-unknown-linux-musl
           file: |
-            ${{github.workspace}}/built.d/tp-note-1.20.1-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
-        if: "! env.SKIP_NEW_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: tp-note-1.20.1
-          release_name: tp-note-1.20.1
-          body: build tp-note@1.20.1
+          tag: cargo-quickinstall-0.2.8
+          release_name: cargo-quickinstall-0.2.8
+          body: build cargo-quickinstall@0.2.8
           file: |
-            ${{github.workspace}}/built.d/tp-note-1.20.1-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl.tar.gz
