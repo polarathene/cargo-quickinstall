@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if !git tag watchexec-2.1.1; then
+            if ! git tag watchexec-2.1.1; then
                 echo "watchexec-2.1.1 tag already exists"
                 echo 'SKIP_NEW_FORMAT=1' >>$GITHUB_ENV
             fi
-            if !git tag watchexec-2.1.1-x86_64-unknown-linux-gnu; then
+            if ! git tag watchexec-2.1.1-x86_64-unknown-linux-gnu; then
                 echo "watchexec-2.1.1-x86_64-unknown-linux-gnu tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
