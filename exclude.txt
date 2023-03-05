@@ -15,6 +15,7 @@ cargo-ebuild
 cargo-edit
 cargo-equip
 cargo-geiger
+cargo-generate
 cargo-index
 cargo-info
 cargo-instruments
