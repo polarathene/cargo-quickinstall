@@ -1,7 +1,7 @@
 name: Build for x86_64-pc-windows-msvc
 
 # Triggered by push from cronjob.
-# create-tauri-app, 3.0.3, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
+# cargo-quickinstall, 0.2.8, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=create-tauri-app
+          export CRATE=cargo-quickinstall
           export TARGET_ARCH=x86_64-pc-windows-msvc
-          export VERSION=3.0.3
+          export VERSION=0.2.8
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/create-tauri-app-3.0.3-x86_64-pc-windows-msvc.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh create-tauri-app-3.0.3; then
-                echo "create-tauri-app-3.0.3 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8; then
+                echo "cargo-quickinstall-0.2.8 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh create-tauri-app-3.0.3-x86_64-pc-windows-msvc; then
-                echo "create-tauri-app-3.0.3-x86_64-pc-windows-msvc tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc; then
+                echo "cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: create-tauri-app-3.0.3-x86_64-pc-windows-msvc
-          release_name: create-tauri-app-3.0.3-x86_64-pc-windows-msvc
-          body: build create-tauri-app@3.0.3 on x86_64-pc-windows-msvc
+          tag: cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc
+          release_name: cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc
+          body: build cargo-quickinstall@0.2.8 on x86_64-pc-windows-msvc
           file: |
-            ${{github.workspace}}/built.d/create-tauri-app-3.0.3-x86_64-pc-windows-msvc.tar.gz
+            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: create-tauri-app-3.0.3
-          release_name: create-tauri-app-3.0.3
-          body: build create-tauri-app@3.0.3
+          tag: cargo-quickinstall-0.2.8
+          release_name: cargo-quickinstall-0.2.8
+          body: build cargo-quickinstall@0.2.8
           file: |
-            ${{github.workspace}}/built.d/create-tauri-app-3.0.3-x86_64-pc-windows-msvc.tar.gz
+            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-pc-windows-msvc.tar.gz
