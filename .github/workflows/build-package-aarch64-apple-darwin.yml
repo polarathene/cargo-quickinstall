@@ -116,7 +116,6 @@ jobs:
             cd trigger
             if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8; then
                 echo "cargo-quickinstall-0.2.8 tag already exists"
-                echo 'SKIP_NEW_FORMAT=1' >>$GITHUB_ENV
             fi
             if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8-aarch64-apple-darwin; then
                 echo "cargo-quickinstall-0.2.8-aarch64-apple-darwin tag already exists"
@@ -137,7 +136,6 @@ jobs:
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
-        if: "! env.SKIP_NEW_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: cargo-quickinstall-0.2.8
