@@ -114,15 +114,14 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! git tag cargo-quickinstall-0.2.8; then
+            if ! (git tag cargo-quickinstall-0.2.8 && git push origin $CRATE-$VERSION); then
                 echo "cargo-quickinstall-0.2.8 tag already exists"
                 echo 'SKIP_NEW_FORMAT=1' >>$GITHUB_ENV
             fi
-            if ! git tag cargo-quickinstall-0.2.8-aarch64-apple-darwin; then
+            if ! (git tag cargo-quickinstall-0.2.8-aarch64-apple-darwin && git push origin $CRATE-$VERSION-$TARGET_ARCH); then
                 echo "cargo-quickinstall-0.2.8-aarch64-apple-darwin tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
-            git push origin --tags
           )
 
       - name: Releasing assets in old release format
