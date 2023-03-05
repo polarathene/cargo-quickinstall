@@ -1,7 +1,7 @@
 name: Build for x86_64-apple-darwin
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.8, x86_64-apple-darwin, actions and macos-latest are replaced using sed.
+# climer, 0.7.1, x86_64-apple-darwin, main and macos-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - uses: taiki-e/install-action@v2
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-quickinstall
+          export CRATE=climer
           export TARGET_ARCH=x86_64-apple-darwin
-          export VERSION=0.2.8
+          export VERSION=0.7.1
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -68,9 +68,6 @@ jobs:
     name: Upload
     needs: build-popular-package
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        shell: bash
     steps:
       - name: Checkout trigger commit
         uses: actions/checkout@v3
@@ -83,7 +80,7 @@ jobs:
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: Download binary artifact
@@ -97,7 +94,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-apple-darwin.tar.gz
+          files: ${{github.workspace}}/built.d/climer-0.7.1-x86_64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -112,37 +109,16 @@ jobs:
       - name: Tag release
         run: |
           (
-            set -euxo pipefail
             cd trigger
-            if !git tag cargo-quickinstall-0.2.8; then
-                echo "cargo-quickinstall-0.2.8 tag already exists"
-                echo 'SKIP_NEW_FORMAT=1' >>$GITHUB_ENV
-            fi
-            if !git tag cargo-quickinstall-0.2.8-x86_64-apple-darwin; then
-                echo "cargo-quickinstall-0.2.8-x86_64-apple-darwin tag already exists"
-                echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
-            fi
-            git push origin --tags
+            git tag climer-0.7.1-x86_64-apple-darwin
+            git push origin climer-0.7.1-x86_64-apple-darwin
           )
 
-      - name: Releasing assets in old release format
-        uses: svenstaro/upload-release-action@v2
-        if: "! env.SKIP_OLD_FORMAT"
+      - name: Releasing assets
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: cargo-quickinstall-0.2.8-x86_64-apple-darwin
-          release_name: cargo-quickinstall-0.2.8-x86_64-apple-darwin
-          body: build cargo-quickinstall@0.2.8 on x86_64-apple-darwin
-          file: |
-            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-apple-darwin.tar.gz
-
-      - name: Releasing assets in new release format
-        uses: svenstaro/upload-release-action@v2
-        if: "! env.SKIP_NEW_FORMAT"
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: cargo-quickinstall-0.2.8
-          release_name: cargo-quickinstall-0.2.8
-          body: build cargo-quickinstall@0.2.8
-          file: |
-            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-apple-darwin.tar.gz
+          tag_name: climer-0.7.1-x86_64-apple-darwin
+          files: |
+            ${{github.workspace}}/built.d/climer-0.7.1-x86_64-apple-darwin.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
