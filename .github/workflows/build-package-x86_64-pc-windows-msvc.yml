@@ -130,7 +130,7 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: tin-summer-1.21.14-x86_64-pc-windows-msvc
+          tag: tin-summer-1.21.14-x86_64-pc-windows-msvc
           release_name: tin-summer-1.21.14-x86_64-pc-windows-msvc
           body: build tin-summer@1.21.14 on x86_64-pc-windows-msvc
           file: |
@@ -141,7 +141,7 @@ jobs:
         if: "! env.SKIP_NEW_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: tin-summer-1.21.14
+          tag: tin-summer-1.21.14
           release_name: tin-summer-1.21.14
           body: build tin-summer@1.21.14
           file: |
