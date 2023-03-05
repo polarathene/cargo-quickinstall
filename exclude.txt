@@ -1,5 +1,6 @@
      74 +::set-output name=crate_to_build::mdcat ::set-output name=version_to_build::1.0.0
 cargo-audit
+cargo-auditable
 cargo-bitbake
 cargo-bom
 cargo-bpf
@@ -45,12 +46,12 @@ gptman
 grex
 intel-mkl-tool
 investments
-itm
 kmon
 leetcode-cli
 mdbook-linkcheck
 mdcat
 my-iot
+natls
 nitrocli
 odbcsv
 project_init
@@ -58,17 +59,17 @@ regress
 rerast
 rexcli
 rust-latest
+sarif-fmt
 sccache
 scryer-prolog
 semverver
+sensei
 sgxs-tools
 spl-token-cli
 spotify-tui
-starship
 tab
 tauri-bundler
 tickrs
-tp-note
 tuftool
 wasm-bindgen-cli
 watchexec
