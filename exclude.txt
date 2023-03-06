@@ -66,6 +66,7 @@ spotify-tui
 starship
 tab
 tauri-bundler
+tin-summer
 tuftool
 wasm-bindgen-cli
 watchexec
