@@ -19,3 +19,4 @@ sgxs-tools
 spl-token-cli
 tauri-bundler
 tp-note
+watchexec
