@@ -1,3 +1,3 @@
-::set-output name=crate_to_build::cargo-sync-rdme
-::set-output name=version_to_build::0.3.0
+::set-output name=crate_to_build::dprint
+::set-output name=version_to_build::0.34.5
 ::set-output name=arch_to_build::x86_64-unknown-linux-musl
