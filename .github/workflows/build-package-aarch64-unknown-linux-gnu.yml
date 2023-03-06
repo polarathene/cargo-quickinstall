@@ -1,7 +1,7 @@
 name: Build for aarch64-unknown-linux-gnu
 
 # Triggered by push from cronjob.
-# cargo-make, 0.36.6, aarch64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
+# sarif-fmt, 0.3.7, aarch64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-make
+          export CRATE=sarif-fmt
           export TARGET_ARCH=aarch64-unknown-linux-gnu
-          export VERSION=0.36.6
+          export VERSION=0.3.7
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-make-0.36.6-aarch64-unknown-linux-gnu.tar.gz
+          files: ${{github.workspace}}/built.d/sarif-fmt-0.3.7-aarch64-unknown-linux-gnu.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-make-0.36.6; then
-                echo "cargo-make-0.36.6 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh sarif-fmt-0.3.7; then
+                echo "sarif-fmt-0.3.7 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-make-0.36.6-aarch64-unknown-linux-gnu; then
-                echo "cargo-make-0.36.6-aarch64-unknown-linux-gnu tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh sarif-fmt-0.3.7-aarch64-unknown-linux-gnu; then
+                echo "sarif-fmt-0.3.7-aarch64-unknown-linux-gnu tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: cargo-make-0.36.6-aarch64-unknown-linux-gnu
-          release_name: cargo-make-0.36.6-aarch64-unknown-linux-gnu
-          body: build cargo-make@0.36.6 on aarch64-unknown-linux-gnu
+          tag: sarif-fmt-0.3.7-aarch64-unknown-linux-gnu
+          release_name: sarif-fmt-0.3.7-aarch64-unknown-linux-gnu
+          body: build sarif-fmt@0.3.7 on aarch64-unknown-linux-gnu
           file: |
-            ${{github.workspace}}/built.d/cargo-make-0.36.6-aarch64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/sarif-fmt-0.3.7-aarch64-unknown-linux-gnu.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: cargo-make-0.36.6
-          release_name: cargo-make-0.36.6
-          body: build cargo-make@0.36.6
+          tag: sarif-fmt-0.3.7
+          release_name: sarif-fmt-0.3.7
+          body: build sarif-fmt@0.3.7
           file: |
-            ${{github.workspace}}/built.d/cargo-make-0.36.6-aarch64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/sarif-fmt-0.3.7-aarch64-unknown-linux-gnu.tar.gz
