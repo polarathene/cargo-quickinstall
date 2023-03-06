@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-gnu
 
 # Triggered by push from cronjob.
-# wrangler, 1.21.0, x86_64-unknown-linux-gnu, actions and ubuntu-20.04 are replaced using sed.
+# yadf, 1.1.0, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - uses: taiki-e/install-action@v2
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=wrangler
+          export CRATE=yadf
           export TARGET_ARCH=x86_64-unknown-linux-gnu
-          export VERSION=1.21.0
+          export VERSION=1.1.0
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -83,7 +83,7 @@ jobs:
         with:
           persist-credentials: false
           # TODO: maybe this should be main or configurable or something?
-          ref: actions
+          ref: main
           path: cargo-quickinstall
 
       - name: Download binary artifact
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/wrangler-1.21.0-x86_64-unknown-linux-gnu.tar.gz
+          files: ${{github.workspace}}/built.d/yadf-1.1.0-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh wrangler-1.21.0; then
-                echo "wrangler-1.21.0 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh yadf-1.1.0; then
+                echo "yadf-1.1.0 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh wrangler-1.21.0-x86_64-unknown-linux-gnu; then
-                echo "wrangler-1.21.0-x86_64-unknown-linux-gnu tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh yadf-1.1.0-x86_64-unknown-linux-gnu; then
+                echo "yadf-1.1.0-x86_64-unknown-linux-gnu tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: wrangler-1.21.0-x86_64-unknown-linux-gnu
-          release_name: wrangler-1.21.0-x86_64-unknown-linux-gnu
-          body: build wrangler@1.21.0 on x86_64-unknown-linux-gnu
+          tag: yadf-1.1.0-x86_64-unknown-linux-gnu
+          release_name: yadf-1.1.0-x86_64-unknown-linux-gnu
+          body: build yadf@1.1.0 on x86_64-unknown-linux-gnu
           file: |
-            ${{github.workspace}}/built.d/wrangler-1.21.0-x86_64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/yadf-1.1.0-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: wrangler-1.21.0
-          release_name: wrangler-1.21.0
-          body: build wrangler@1.21.0
+          tag: yadf-1.1.0
+          release_name: yadf-1.1.0
+          body: build yadf@1.1.0
           file: |
-            ${{github.workspace}}/built.d/wrangler-1.21.0-x86_64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/yadf-1.1.0-x86_64-unknown-linux-gnu.tar.gz
