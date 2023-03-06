@@ -19,6 +19,7 @@ cargo-outdated
 cargo-raze
 cargo-release
 cargo-script
+cargo-spellcheck
 cargo-tarpaulin
 cargo-travis
 cargo-udeps
