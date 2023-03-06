@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-musl
 
 # Triggered by push from cronjob.
-# cargo-quickinstall, 0.2.8, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
+# ripgrep, 13.0.0, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-quickinstall
+          export CRATE=ripgrep
           export TARGET_ARCH=x86_64-unknown-linux-musl
-          export VERSION=0.2.8
+          export VERSION=13.0.0
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl.tar.gz
+          files: ${{github.workspace}}/built.d/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8; then
-                echo "cargo-quickinstall-0.2.8 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh ripgrep-13.0.0; then
+                echo "ripgrep-13.0.0 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl; then
-                echo "cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh ripgrep-13.0.0-x86_64-unknown-linux-musl; then
+                echo "ripgrep-13.0.0-x86_64-unknown-linux-musl tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl
-          release_name: cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl
-          body: build cargo-quickinstall@0.2.8 on x86_64-unknown-linux-musl
+          tag: ripgrep-13.0.0-x86_64-unknown-linux-musl
+          release_name: ripgrep-13.0.0-x86_64-unknown-linux-musl
+          body: build ripgrep@13.0.0 on x86_64-unknown-linux-musl
           file: |
-            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: cargo-quickinstall-0.2.8
-          release_name: cargo-quickinstall-0.2.8
-          body: build cargo-quickinstall@0.2.8
+          tag: ripgrep-13.0.0
+          release_name: ripgrep-13.0.0
+          body: build ripgrep@13.0.0
           file: |
-            ${{github.workspace}}/built.d/cargo-quickinstall-0.2.8-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
