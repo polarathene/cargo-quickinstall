@@ -29,6 +29,7 @@ sgxs-tools
 skim
 tab
 tauri-bundler
+tin-summer
 tp-note
 watchexec
 wrangler
