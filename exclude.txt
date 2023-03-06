@@ -15,3 +15,4 @@ semverver
 sgxs-tools
 tauri-bundler
 watchexec
+watchexec-cli
