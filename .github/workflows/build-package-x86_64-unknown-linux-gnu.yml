@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-gnu
 
 # Triggered by push from cronjob.
-# mdbook-linkcheck, 0.7.7, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
+# cargo-udeps, 0.1.35, x86_64-unknown-linux-gnu, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=mdbook-linkcheck
+          export CRATE=cargo-udeps
           export TARGET_ARCH=x86_64-unknown-linux-gnu
-          export VERSION=0.7.7
+          export VERSION=0.1.35
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/mdbook-linkcheck-0.7.7-x86_64-unknown-linux-gnu.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-udeps-0.1.35-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh mdbook-linkcheck-0.7.7; then
-                echo "mdbook-linkcheck-0.7.7 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-udeps-0.1.35; then
+                echo "cargo-udeps-0.1.35 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh mdbook-linkcheck-0.7.7-x86_64-unknown-linux-gnu; then
-                echo "mdbook-linkcheck-0.7.7-x86_64-unknown-linux-gnu tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-udeps-0.1.35-x86_64-unknown-linux-gnu; then
+                echo "cargo-udeps-0.1.35-x86_64-unknown-linux-gnu tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: mdbook-linkcheck-0.7.7-x86_64-unknown-linux-gnu
-          release_name: mdbook-linkcheck-0.7.7-x86_64-unknown-linux-gnu
-          body: build mdbook-linkcheck@0.7.7 on x86_64-unknown-linux-gnu
+          tag: cargo-udeps-0.1.35-x86_64-unknown-linux-gnu
+          release_name: cargo-udeps-0.1.35-x86_64-unknown-linux-gnu
+          body: build cargo-udeps@0.1.35 on x86_64-unknown-linux-gnu
           file: |
-            ${{github.workspace}}/built.d/mdbook-linkcheck-0.7.7-x86_64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/cargo-udeps-0.1.35-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: mdbook-linkcheck-0.7.7
-          release_name: mdbook-linkcheck-0.7.7
-          body: build mdbook-linkcheck@0.7.7
+          tag: cargo-udeps-0.1.35
+          release_name: cargo-udeps-0.1.35
+          body: build cargo-udeps@0.1.35
           file: |
-            ${{github.workspace}}/built.d/mdbook-linkcheck-0.7.7-x86_64-unknown-linux-gnu.tar.gz
+            ${{github.workspace}}/built.d/cargo-udeps-0.1.35-x86_64-unknown-linux-gnu.tar.gz
