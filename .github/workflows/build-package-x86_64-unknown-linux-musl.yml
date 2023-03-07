@@ -1,7 +1,7 @@
 name: Build for x86_64-unknown-linux-musl
 
 # Triggered by push from cronjob.
-# semantic-release-cargo, 2.1.34, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
+# zellij, 0.35.1, x86_64-unknown-linux-musl, main and ubuntu-20.04 are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=semantic-release-cargo
+          export CRATE=zellij
           export TARGET_ARCH=x86_64-unknown-linux-musl
-          export VERSION=2.1.34
+          export VERSION=0.35.1
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/semantic-release-cargo-2.1.34-x86_64-unknown-linux-musl.tar.gz
+          files: ${{github.workspace}}/built.d/zellij-0.35.1-x86_64-unknown-linux-musl.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh semantic-release-cargo-2.1.34; then
-                echo "semantic-release-cargo-2.1.34 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh zellij-0.35.1; then
+                echo "zellij-0.35.1 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh semantic-release-cargo-2.1.34-x86_64-unknown-linux-musl; then
-                echo "semantic-release-cargo-2.1.34-x86_64-unknown-linux-musl tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh zellij-0.35.1-x86_64-unknown-linux-musl; then
+                echo "zellij-0.35.1-x86_64-unknown-linux-musl tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: semantic-release-cargo-2.1.34-x86_64-unknown-linux-musl
-          release_name: semantic-release-cargo-2.1.34-x86_64-unknown-linux-musl
-          body: build semantic-release-cargo@2.1.34 on x86_64-unknown-linux-musl
+          tag: zellij-0.35.1-x86_64-unknown-linux-musl
+          release_name: zellij-0.35.1-x86_64-unknown-linux-musl
+          body: build zellij@0.35.1 on x86_64-unknown-linux-musl
           file: |
-            ${{github.workspace}}/built.d/semantic-release-cargo-2.1.34-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/zellij-0.35.1-x86_64-unknown-linux-musl.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: semantic-release-cargo-2.1.34
-          release_name: semantic-release-cargo-2.1.34
-          body: build semantic-release-cargo@2.1.34
+          tag: zellij-0.35.1
+          release_name: zellij-0.35.1
+          body: build zellij@0.35.1
           file: |
-            ${{github.workspace}}/built.d/semantic-release-cargo-2.1.34-x86_64-unknown-linux-musl.tar.gz
+            ${{github.workspace}}/built.d/zellij-0.35.1-x86_64-unknown-linux-musl.tar.gz
