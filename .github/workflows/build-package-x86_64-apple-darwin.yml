@@ -1,7 +1,7 @@
 name: Build for x86_64-apple-darwin
 
 # Triggered by push from cronjob.
-# rtx-cli, 1.22.5, x86_64-apple-darwin, main and macos-latest are replaced using sed.
+# sccache, 0.3.3, x86_64-apple-darwin, main and macos-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=rtx-cli
+          export CRATE=sccache
           export TARGET_ARCH=x86_64-apple-darwin
-          export VERSION=1.22.5
+          export VERSION=0.3.3
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/rtx-cli-1.22.5-x86_64-apple-darwin.tar.gz
+          files: ${{github.workspace}}/built.d/sccache-0.3.3-x86_64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh rtx-cli-1.22.5; then
-                echo "rtx-cli-1.22.5 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh sccache-0.3.3; then
+                echo "sccache-0.3.3 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh rtx-cli-1.22.5-x86_64-apple-darwin; then
-                echo "rtx-cli-1.22.5-x86_64-apple-darwin tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh sccache-0.3.3-x86_64-apple-darwin; then
+                echo "sccache-0.3.3-x86_64-apple-darwin tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: rtx-cli-1.22.5-x86_64-apple-darwin
-          release_name: rtx-cli-1.22.5-x86_64-apple-darwin
-          body: build rtx-cli@1.22.5 on x86_64-apple-darwin
+          tag: sccache-0.3.3-x86_64-apple-darwin
+          release_name: sccache-0.3.3-x86_64-apple-darwin
+          body: build sccache@0.3.3 on x86_64-apple-darwin
           file: |
-            ${{github.workspace}}/built.d/rtx-cli-1.22.5-x86_64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/sccache-0.3.3-x86_64-apple-darwin.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: rtx-cli-1.22.5
-          release_name: rtx-cli-1.22.5
-          body: build rtx-cli@1.22.5
+          tag: sccache-0.3.3
+          release_name: sccache-0.3.3
+          body: build sccache@0.3.3
           file: |
-            ${{github.workspace}}/built.d/rtx-cli-1.22.5-x86_64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/sccache-0.3.3-x86_64-apple-darwin.tar.gz
