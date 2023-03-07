@@ -1,7 +1,7 @@
 name: Build for x86_64-pc-windows-msvc
 
 # Triggered by push from cronjob.
-# sarif-fmt, 0.3.7, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
+# clippy-sarif, 0.3.7, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,7 +46,7 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=sarif-fmt
+          export CRATE=clippy-sarif
           export TARGET_ARCH=x86_64-pc-windows-msvc
           export VERSION=0.3.7
 
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/sarif-fmt-0.3.7-x86_64-pc-windows-msvc.tar.gz
+          files: ${{github.workspace}}/built.d/clippy-sarif-0.3.7-x86_64-pc-windows-msvc.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh sarif-fmt-0.3.7; then
-                echo "sarif-fmt-0.3.7 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh clippy-sarif-0.3.7; then
+                echo "clippy-sarif-0.3.7 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh sarif-fmt-0.3.7-x86_64-pc-windows-msvc; then
-                echo "sarif-fmt-0.3.7-x86_64-pc-windows-msvc tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh clippy-sarif-0.3.7-x86_64-pc-windows-msvc; then
+                echo "clippy-sarif-0.3.7-x86_64-pc-windows-msvc tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: sarif-fmt-0.3.7-x86_64-pc-windows-msvc
-          release_name: sarif-fmt-0.3.7-x86_64-pc-windows-msvc
-          body: build sarif-fmt@0.3.7 on x86_64-pc-windows-msvc
+          tag: clippy-sarif-0.3.7-x86_64-pc-windows-msvc
+          release_name: clippy-sarif-0.3.7-x86_64-pc-windows-msvc
+          body: build clippy-sarif@0.3.7 on x86_64-pc-windows-msvc
           file: |
-            ${{github.workspace}}/built.d/sarif-fmt-0.3.7-x86_64-pc-windows-msvc.tar.gz
+            ${{github.workspace}}/built.d/clippy-sarif-0.3.7-x86_64-pc-windows-msvc.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: sarif-fmt-0.3.7
-          release_name: sarif-fmt-0.3.7
-          body: build sarif-fmt@0.3.7
+          tag: clippy-sarif-0.3.7
+          release_name: clippy-sarif-0.3.7
+          body: build clippy-sarif@0.3.7
           file: |
-            ${{github.workspace}}/built.d/sarif-fmt-0.3.7-x86_64-pc-windows-msvc.tar.gz
+            ${{github.workspace}}/built.d/clippy-sarif-0.3.7-x86_64-pc-windows-msvc.tar.gz
