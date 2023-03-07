@@ -1,7 +1,7 @@
 name: Build for aarch64-apple-darwin
 
 # Triggered by push from cronjob.
-# complate, 0.12.5, aarch64-apple-darwin, main and macos-latest are replaced using sed.
+# zellij, 0.35.1, aarch64-apple-darwin, main and macos-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=complate
+          export CRATE=zellij
           export TARGET_ARCH=aarch64-apple-darwin
-          export VERSION=0.12.5
+          export VERSION=0.35.1
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/complate-0.12.5-aarch64-apple-darwin.tar.gz
+          files: ${{github.workspace}}/built.d/zellij-0.35.1-aarch64-apple-darwin.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh complate-0.12.5; then
-                echo "complate-0.12.5 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh zellij-0.35.1; then
+                echo "zellij-0.35.1 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh complate-0.12.5-aarch64-apple-darwin; then
-                echo "complate-0.12.5-aarch64-apple-darwin tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh zellij-0.35.1-aarch64-apple-darwin; then
+                echo "zellij-0.35.1-aarch64-apple-darwin tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: complate-0.12.5-aarch64-apple-darwin
-          release_name: complate-0.12.5-aarch64-apple-darwin
-          body: build complate@0.12.5 on aarch64-apple-darwin
+          tag: zellij-0.35.1-aarch64-apple-darwin
+          release_name: zellij-0.35.1-aarch64-apple-darwin
+          body: build zellij@0.35.1 on aarch64-apple-darwin
           file: |
-            ${{github.workspace}}/built.d/complate-0.12.5-aarch64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/zellij-0.35.1-aarch64-apple-darwin.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: complate-0.12.5
-          release_name: complate-0.12.5
-          body: build complate@0.12.5
+          tag: zellij-0.35.1
+          release_name: zellij-0.35.1
+          body: build zellij@0.35.1
           file: |
-            ${{github.workspace}}/built.d/complate-0.12.5-aarch64-apple-darwin.tar.gz
+            ${{github.workspace}}/built.d/zellij-0.35.1-aarch64-apple-darwin.tar.gz
