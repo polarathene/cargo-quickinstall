@@ -1,7 +1,7 @@
 name: Build for x86_64-pc-windows-msvc
 
 # Triggered by push from cronjob.
-# cargo-udeps, 0.1.35, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
+# cargo-edit, 0.11.9, x86_64-pc-windows-msvc, main and windows-latest are replaced using sed.
 # Title of job in https://github.com/cargo-bins/cargo-quickinstall/actions
 # is set by the commit message, which is created by trigger-package-build.sh
 on:
@@ -46,9 +46,9 @@ jobs:
           TEMPDIR="$PWD"
           popd
 
-          export CRATE=cargo-udeps
+          export CRATE=cargo-edit
           export TARGET_ARCH=x86_64-pc-windows-msvc
-          export VERSION=0.1.35
+          export VERSION=0.11.9
 
           cargo-quickinstall/build-version.sh "${CRATE}"
           touch $TEMPDIR/dummy-file
@@ -97,7 +97,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{github.workspace}}/built.d/cargo-udeps-0.1.35-x86_64-pc-windows-msvc.tar.gz
+          files: ${{github.workspace}}/built.d/cargo-edit-0.11.9-x86_64-pc-windows-msvc.tar.gz
 
       - name: Cancel if no tarball
         if: steps.check_files.outputs.files_exists == 'false'
@@ -114,11 +114,11 @@ jobs:
           (
             set -euxo pipefail
             cd trigger
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-udeps-0.1.35; then
-                echo "cargo-udeps-0.1.35 tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-edit-0.11.9; then
+                echo "cargo-edit-0.11.9 tag already exists"
             fi
-            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-udeps-0.1.35-x86_64-pc-windows-msvc; then
-                echo "cargo-udeps-0.1.35-x86_64-pc-windows-msvc tag already exists"
+            if ! ../cargo-quickinstall/create_and_upload_tag.sh cargo-edit-0.11.9-x86_64-pc-windows-msvc; then
+                echo "cargo-edit-0.11.9-x86_64-pc-windows-msvc tag already exists"
                 echo 'SKIP_OLD_FORMAT=1' >>$GITHUB_ENV
             fi
           )
@@ -128,18 +128,18 @@ jobs:
         if: "! env.SKIP_OLD_FORMAT"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: cargo-udeps-0.1.35-x86_64-pc-windows-msvc
-          release_name: cargo-udeps-0.1.35-x86_64-pc-windows-msvc
-          body: build cargo-udeps@0.1.35 on x86_64-pc-windows-msvc
+          tag: cargo-edit-0.11.9-x86_64-pc-windows-msvc
+          release_name: cargo-edit-0.11.9-x86_64-pc-windows-msvc
+          body: build cargo-edit@0.11.9 on x86_64-pc-windows-msvc
           file: |
-            ${{github.workspace}}/built.d/cargo-udeps-0.1.35-x86_64-pc-windows-msvc.tar.gz
+            ${{github.workspace}}/built.d/cargo-edit-0.11.9-x86_64-pc-windows-msvc.tar.gz
 
       - name: Releasing assets in new release format
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: cargo-udeps-0.1.35
-          release_name: cargo-udeps-0.1.35
-          body: build cargo-udeps@0.1.35
+          tag: cargo-edit-0.11.9
+          release_name: cargo-edit-0.11.9
+          body: build cargo-edit@0.11.9
           file: |
-            ${{github.workspace}}/built.d/cargo-udeps-0.1.35-x86_64-pc-windows-msvc.tar.gz
+            ${{github.workspace}}/built.d/cargo-edit-0.11.9-x86_64-pc-windows-msvc.tar.gz
